@@ -1,0 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
+
+.h1-style{
+    position: absolute;
+    top: 140px;
+    left: 385px;
+    color: white;
+    font-family: 'Hind Siliguri';
+
+}
+
+.h3-style{
+    position: absolute;
+    top: 200px;
+    left: 370px;
+    color: white;
+
+
+}

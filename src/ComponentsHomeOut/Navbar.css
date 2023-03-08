@@ -1,0 +1,54 @@
+.navbar-style{
+    background-color: #fff;
+    height: 65px!important;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    z-index: 2;
+    box-shadow: 0 -10px 50px #333;
+    position: fixed;
+    width: 100%;
+    top:0
+}
+
+ul {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.adm-link {
+    margin-left: 100px;
+    display: inline;
+}
+
+
+.profile-link {
+    margin-left: 0px;
+    display: inline;
+}
+
+.search-loged-link {
+    margin-left: 90px;
+    display: inline;
+}
+
+.button-logout{
+    position: absolute;
+    right: 190px;
+    top: 0;
+    border-radius: 5px!important;
+    background-color: #f2f2f2!important;
+    padding: 11px 13px!important;
+    color: #1DA1F2!important;
+    font-weight: 600!important;
+    margin: 5px;
+    
+    }
+
+    .styleh1{
+        position: absolute;
+        top: 120px;
+        left:420px;
+        text-align: center;
+        font-size: 60px;
+    }
+ 

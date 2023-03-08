@@ -1,0 +1,68 @@
+.h2-text{
+   
+    margin-top: 100px;
+    text-align: center;
+
+}
+
+.hr-form-init{
+    position: absolute;
+    top: 200px;
+    left: 450px;
+   
+        border:none;
+        height: 20px;
+           width: 40%;
+          border-bottom: 1px solid black;
+          box-shadow: 0 20px 20px -20px #333;
+        margin: -50px auto 10px; 
+      
+}
+
+.hr-form-end{
+    position: absolute;
+    bottom: 50px;
+    left: 450px;
+   
+        border:none;
+        height: 20px;
+           width: 40%;
+          border-bottom: 1px solid black;
+          box-shadow: 0 20px 20px -20px #333;
+        margin: -50px auto 10px; 
+      
+}
+
+.Form-Box {
+    position: absolute;
+    width: 40vw;
+    height: 70vh;
+    top: 200px;
+    left:550px;
+    
+}
+
+.input-prof , .textarea-profile{
+    
+   width: 300px;
+   display: block;
+}
+
+label {
+    font-weight: bold;
+}
+
+.save-button{
+    position: absolute;
+    right: 585px;
+    bottom: 140px;
+    width: 300px;
+    border-radius: 5px!important;
+    background-color: #f2f2f2!important;
+    padding: 11px 13px!important;
+    color: #1DA1F2!important;
+    font-weight: 600!important;
+    margin: 5px;
+
+}
+
