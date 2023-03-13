@@ -10,42 +10,53 @@ function PetContext({ children }) {
   const [petInfo, setPetInfo] = useState();
   const [myPets, setMyPets] = useState([]);
   const [myPetsResult, setMyPetsResult] = useState([]);
-  const { authState, setAuthstate } = useContext(authStates);
+  const [queryType,setQueryType] = useState(false);
+  const [stateDogType,setStateDogType] = useState('');
+  const [stateCatType,setStateCatType] = useState('');
+
+  const queryTypeDog = 'Dog';
+  const queryTypeCat = 'Cat';
 
   useEffect(() => {
     axios.get("http://localhost:3000/pet").then((res) => {
-      console.log("resposta", res.data);
-      //   console.log("query", searchParam);
+      console.log("resposta0", res.data);
+      
       setPetInfo(res.data);
-      //   setSearchList(true);
-      //   console.log(searchList);
+      
     });
   }, []);
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/getpets/${authState.email}`)
-  //   .then((res) => { console.log(res.data.adopted)
-  //    setMyPets(res.data.adopted)})
+  useEffect(() => {
 
-  // },[])
+    axios.get(`http://localhost:3000/search/${queryTypeDog}`).then((res) =>{
+      console.log('resposta1',res.data)
+      setStateDogType(res.data)
+      
+    })
+  },[])
 
-  // useEffect(() => {
-  //   console.log(myPets)
-  //   myPets.map((item) => {
-  //     axios.get(`http://localhost:3000/pet/${item}`)
-  //     .then((res) =>  setMyPetsResult(res.data.pet.petInfo))
+  useEffect(() => {
 
-  //   })
+    axios.get(`http://localhost:3000/search/${queryTypeCat}`).then((res) =>{
+      console.log('resposta2',res.data)
+      setStateCatType(res.data)
+      
+    })
+  },[])
 
-  // },[myPets])
 
-  setTimeout(() => {
-    console.log("dados", myPetsResult);
-  }, 1000);
+
+
+  
+  
+
+
+
+
 
   return (
     <petContext.Provider
-      value={{ petInfo, setPetInfo, myPetsResult, setMyPetsResult }}
+      value={{ petInfo, setPetInfo, myPetsResult, setMyPetsResult,queryType,setQueryType,stateDogType,setStateDogType,stateCatType,setStateCatType}}
     >
       {children}
     </petContext.Provider>
