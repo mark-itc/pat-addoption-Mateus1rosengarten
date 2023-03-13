@@ -1,14 +1,50 @@
-.search-bar {
-    position: relative;
+.search-dog {
+    position: absolute;
     top: 120px;
-    left: 420px;
+    left: 0;
     border-radius: 10px;
     width: 45vw;
-    height: 60px;
+    height: 30px;
     
     
   }
 
+  .search-cat {
+    position: absolute;
+    top: 180px;
+    left: 300px;
+    border-radius: 10px;
+    font-size: 30px;
+    
+    
+    
+  }
+
+  .check-cat{
+   width: 30px;
+   height: 30px;
+  
+
+  }
+
+  .search-dog {
+    position: absolute;
+    top: 120px;
+    left: 300px;
+    border-radius: 10px;
+    font-size: 30px;
+    
+    
+    
+  }
+
+  .check-dog{
+    width: 30px;
+    height: 30px;
+   
+ 
+   }
+  
 
 
 .navbar{
@@ -85,7 +121,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border: 1px solid black;
-    margin: 10px 10px 10px 10px;
+    margin: 70px 10px 10px 10px;
     display: flex;
     flex-direction: row;
   }
@@ -104,11 +140,17 @@
     position: absolute;
     width: 60vw;
     height: 100vh;
-    top:250px;
+    top:400px;
     left: 280px;
     display: flex;
   }
 
+
+  .all-pet-text{
+    position: absolute;
+    top: 0;
+    left: 400px;
+  }
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
