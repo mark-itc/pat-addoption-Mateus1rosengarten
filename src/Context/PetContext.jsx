@@ -13,6 +13,8 @@ function PetContext({ children }) {
   const [queryType,setQueryType] = useState(false);
   const [stateDogType,setStateDogType] = useState('');
   const [stateCatType,setStateCatType] = useState('');
+  const [stateFullSearch,setStateFullSearch] = useState([])
+  const [searchList,setSearchList] = useState(false)
 
   const queryTypeDog = 'Dog';
   const queryTypeCat = 'Cat';
@@ -56,7 +58,7 @@ function PetContext({ children }) {
 
   return (
     <petContext.Provider
-      value={{ petInfo, setPetInfo, myPetsResult, setMyPetsResult,queryType,setQueryType,stateDogType,setStateDogType,stateCatType,setStateCatType}}
+      value={{ petInfo, setPetInfo, myPetsResult, setMyPetsResult,queryType,setQueryType,stateDogType,setStateDogType,stateCatType,setStateCatType,stateFullSearch,setStateFullSearch,searchList,setSearchList}}
     >
       {children}
     </petContext.Provider>
