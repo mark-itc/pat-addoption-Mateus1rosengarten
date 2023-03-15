@@ -21,7 +21,7 @@
 
 .hr-form-end{
     position: absolute;
-    bottom: 50px;
+    bottom: 10px;
     left: 450px;
    
         border:none;
@@ -38,7 +38,7 @@
     width: 40vw;
     height: 70vh;
     top: 200px;
-    left:550px;
+    left:580px;
     
 }
 
@@ -46,6 +46,7 @@
     
    width: 300px;
    display: block;
+   margin: 5px;
 }
 
 label {
@@ -54,8 +55,8 @@ label {
 
 .save-button{
     position: absolute;
-    right: 585px;
-    bottom: 140px;
+    right: 550px;
+    bottom: 75px;
     width: 300px;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
