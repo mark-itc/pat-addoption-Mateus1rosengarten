@@ -17,8 +17,8 @@ function PetPage() {
     if (id) {
       console.log("id", id);
       axios.get(`http://localhost:3000/pet/${id}`).then((res) => {
-        console.log("mypey", res.data.pet.petInfo.name);
-        const petFullInfo = res.data.pet.petInfo;
+        console.log("mypey", res.data.pet.name);
+        const petFullInfo = res.data.pet;
         console.log("info", petFullInfo);
         setFullInfoPet(petFullInfo);
         setStatusInfo(res.data.pet.status);
