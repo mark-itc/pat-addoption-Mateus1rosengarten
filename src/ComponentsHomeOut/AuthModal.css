@@ -19,6 +19,7 @@
     top: 100px;
     left: 550px;
     padding: 30px;
+    z-index: 999 !important; 
    
     max-width: 350px;
     width: 100% !important;
