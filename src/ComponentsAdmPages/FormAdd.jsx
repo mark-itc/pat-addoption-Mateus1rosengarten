@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Axios } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "./FormAdd.css";
@@ -18,11 +17,29 @@ function Form() {
     breed: "",
   });
 
+  const type = petInfo.type;
+  const name = petInfo.name;
+  const heigth = petInfo.heigth;
+  const weight = petInfo.weight;
+  const color = petInfo.color;
+  const bio = petInfo.bio;
+  const dieatary = petInfo.dietary;
+  const breed = petInfo.breed;
+
   const addPet = () => {
     console.log(petInfo);
     axios
-      .post("http://localhost:3000/petadd", { petInfo })
-      .then(function (res) {
+      .post("http://localhost:3000/petadd", {
+        type,
+        name,
+        heigth,
+        weight,
+        color,
+        bio,
+        dieatary,
+        breed,
+      })
+      .then((res) => {
         console.log(res);
         navigate("/adm/addpet");
       });
