@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import './SearchPage.css'
 import ModalSearch from './ModalSearch'
+import { petContext } from '../Context/PetContext';
 
 
 function SearchComponent ({handlingBasicSearch,inputCatValue,inputDogValue,setPetInfo}) {
+    
+
 
     const [modal,setModal] = useState(false)
     
 
     const openingModal = () => {
-        setModal(true)
+        setModal(true);
+        
+        
     };
 
     const togglingModal = () => {
@@ -23,25 +28,26 @@ function SearchComponent ({handlingBasicSearch,inputCatValue,inputDogValue,setPe
 
     return (
     <>
-    <div className='navbar'> 
+    <div className='search-filters'> 
    
     <label className='search-cat'> 
     <input onChange={inputCatValue} type="checkbox" className="check-cat" id="cat" /> 
-        Cat
+        Cats
     </label>
 
     <label className='search-dog'> 
     <input onChange={inputDogValue} type="checkbox" className="check-dog" id="dog" /> 
-       Dog
+     Dogs
     </label>
 
-    <button onClick={handlingBasicSearch} className='search'>SEARCH</button>
-    {/* <button onClick={openingModal} className='search-advance'>ADVANCED SEARCH</button> */}
+    {/* <button onClick={handlingBasicSearch} className='search'>SEARCH</button> */}
+    <button onClick={openingModal} className='search-advance'>ADVANCED SEARCH</button>
     </div>
 
     {modal && <ModalSearch
     toggleModal={togglingModal}
-    setPetInfo ={setPetInfo}>
+   >
+        
         </ModalSearch>}
 
     
