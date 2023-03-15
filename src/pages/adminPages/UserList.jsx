@@ -5,7 +5,7 @@ const { useState } = require("react");
 
 function UserList() {
   const { user, setUser } = useContext(userStates);
-  const [userList, setUserList] = useState(false);
+  const {userList, setUserList} = useContext(userStates);
   const navigate = useNavigate();
 
   setTimeout(() => {

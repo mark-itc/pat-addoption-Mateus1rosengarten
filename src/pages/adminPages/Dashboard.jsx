@@ -39,9 +39,9 @@ function DashBoard() {
                   <img src="" alt="" />
                   <div className="containerPet">
                     <h4 className="h4-card">
-                      {item.petInfo.name.toUpperCase()}
+                      {item.name.toUpperCase()}
                     </h4>
-                    <p>{item.petInfo.status}</p>
+                    <p>{item.status}</p>
 
                     <button
                       onClick={() => {
