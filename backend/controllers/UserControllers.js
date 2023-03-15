@@ -1,5 +1,6 @@
 const UsersDAO = require("../Models/userDAO");
 const PetDAO = require("../Models/petDAO");
+const sha256 = require("sha256");
 
 module.exports = class UserController {
   static async getUserById(req, res) {
@@ -23,28 +24,20 @@ module.exports = class UserController {
 
   static async updateUser(req, res) {
     try {
-      const { userEmail } = req.params;
+      const userEmail = req.params.email;
       const { userData } = req.body;
+      userData.password = sha256(userData.password);
+      userData.repeatPass = sha256(userData.password);
 
-      console.log("teste1", userData);
-      console.log("teste2", userEmail);
-
-      // if (userData.password) {
-      //   userData.password = sha256(userData.password);
-      // }
       const user = await UsersDAO.updateUser(userEmail, userData);
 
       return res.status(200).json({
+        userupdated: user,
         success: true,
         message: "User updated",
       });
-    } catch (e) {
-      console.log(`Error in UsersController.updateUser ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknown error",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 
@@ -61,13 +54,8 @@ module.exports = class UserController {
         success: true,
         message: "Pet adopted sucessfuly",
       });
-    } catch (e) {
-      console.log(`Error in UsersController.adopt ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknown error???",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 
@@ -84,13 +72,8 @@ module.exports = class UserController {
         success: true,
         message: "Pet fostered sucessfuly",
       });
-    } catch (e) {
-      console.log(`Error in UsersController.foster ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknown error",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 
@@ -107,13 +90,8 @@ module.exports = class UserController {
         success: true,
         message: "Pet returned sucessfuly",
       });
-    } catch (e) {
-      console.log(`Error in UsersController.Return ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknown error",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 
@@ -128,13 +106,8 @@ module.exports = class UserController {
         success: true,
         message: "Pet saved sucessfuly",
       });
-    } catch (e) {
-      console.log(`Error in UsersController.Save ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknown error",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 
@@ -149,13 +122,8 @@ module.exports = class UserController {
         success: true,
         message: "Pet Unsaved sucessfuly",
       });
-    } catch (e) {
-      console.log(`Error in UsersController.UnSave ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknown error",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 
@@ -167,13 +135,8 @@ module.exports = class UserController {
       req.adopted = user.adopted;
 
       next();
-    } catch (e) {
-      console.log(`Error in UsersController.GetUserPets ${e}`);
-
-      return res.status(500).json({
-        success: false,
-        message: "unknownn error",
-      });
+    } catch (error) {
+      res.status(404).json({ message: "Something got wrong" });
     }
   }
 };

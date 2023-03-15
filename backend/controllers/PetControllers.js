@@ -13,12 +13,12 @@ module.exports = class PetControllers {
       }
 
       const pet = req.body;
-      console.log("pet", pet);
+
       //  pet.file = "http://localhost:3000/" + req.file.path;
 
       const petCreated = await PetDAO.addPet(pet);
 
-      res.status(201).json(petCreated);
+      res.status(200).json(petCreated);
     } catch (error) {
       res.status(404).json({ message: "something got wrong " });
     }
@@ -27,8 +27,7 @@ module.exports = class PetControllers {
   static async getAllPets(req, res) {
     try {
       const allPets = await PetDAO.getPets();
-      res.status(201).json(allPets);
-      console.log(allPets);
+      res.status(200).json(allPets);
     } catch (error) {
       res.status(404).json({ message: "something got wrong" });
     }
@@ -38,9 +37,8 @@ module.exports = class PetControllers {
     const { id } = req.params;
     try {
       const pet = await PetDAO.getPetById(id);
-      console.log("mypett", pet);
-      console.log("id", id);
-      res.status(201).json({ pet: pet });
+
+      res.status(200).json({ pet: pet });
     } catch {
       res.status(404).json({ message: "something got wrong" });
     }
@@ -50,9 +48,48 @@ module.exports = class PetControllers {
     const { type } = req.params;
     try {
       const pet = await PetDAO.getPetsbyType(type);
-      res.status(201).json(pet);
+      console.log("petByType", pet);
+      res.status(200).json(pet);
     } catch (error) {
-      res.status(404).json({ message: "something got wrong" });
+      res.status(404).json({ message: "something got wrong..." });
+    }
+  }
+
+  static async FindFullPet(req, res) {
+    const queryParameters = req.query;
+    const queryObj = {};
+    if (queryParameters.status) {
+      queryObj.status = queryParameters.status;
+    }
+    if (queryParameters.type) {
+      queryObj.type = queryParameters.type;
+    }
+    if (queryParameters.heigth) {
+      queryObj.heigth = queryParameters.heigth;
+    }
+    if (queryParameters.weight) {
+      queryObj.weight = queryParameters.weight;
+    }
+    if (queryParameters.name) {
+      queryObj.name = queryParameters.name;
+    }
+
+    try {
+      const result = await PetDAO.GetFullPet(queryObj);
+      if (result) {
+        console.log("nome", queryObj.type);
+        res.status(200).send({
+          sucess: true,
+          pets: result,
+        });
+      } else {
+        res.status(400).send({
+          sucess: false,
+          message: "Somethin got wrong ",
+        });
+      }
+    } catch (error) {
+      res.status(404).json({ message: "something got wrong " });
     }
   }
 
@@ -60,7 +97,7 @@ module.exports = class PetControllers {
     const { id } = req.params;
     try {
       const deleted = await PetDAO.deletePet(id);
-      res.status(201).json(deleted);
+      res.status(200).json(deleted);
     } catch {
       res.status(404).json({ message: "something got wrong" });
     }
@@ -70,7 +107,7 @@ module.exports = class PetControllers {
     const { id } = req.params;
     try {
       const pet = PetDAO.getPetByUserId(id);
-      res.status(201).json(pet);
+      res.status(200).json(pet);
     } catch {
       res.status(404).json({ message: "something got wrong" });
     }

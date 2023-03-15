@@ -8,11 +8,13 @@ const UsersDAO = require("../Models/userDAO");
 const { ObjectId } = require("mongodb");
 
 module.exports = class AuthControllers {
+  // REGISTER CONTROLLER
+
   static async Register(req, res) {
     try {
       const validRequest = RegisterValidation(req.body);
       if (!validRequest) {
-        return res.status(400).json({
+        return res.status(404).json({
           sucess: false,
           message: "Please fill all fields",
         });
@@ -23,7 +25,7 @@ module.exports = class AuthControllers {
       const oldUser = await UsersDAO.getUserByEmail(userObject.email);
 
       if (oldUser) {
-        return res.status(400).json({
+        return res.status(404).json({
           success: false,
           message: "Email already exist",
         });
@@ -34,9 +36,9 @@ module.exports = class AuthControllers {
       await UsersDAO.createUser(userObject);
       const token = jwt.sign(
         {
-          user_id: userObject._id,
-          userName: userObject.name,
-          userEmail: userObject.email,
+          _id: userObject._id,
+          name: userObject.name,
+          email: userObject.email,
         },
         "secret"
       );
@@ -56,7 +58,7 @@ module.exports = class AuthControllers {
     try {
       const validRequest = LoginValidation(req.body);
       if (!validRequest) {
-        return res.status(400).json({
+        return res.status(404).json({
           sucess: false,
           message: "Please Fill all fields",
         });
@@ -64,7 +66,7 @@ module.exports = class AuthControllers {
 
       const user = await UsersDAO.getUserByEmail(req.body.email);
       if (!user || user.password != sha256(req.body.password)) {
-        return res.status(400).json({
+        return res.status(404).json({
           success: false,
           message: "Wrong username or password",
         });
@@ -74,6 +76,9 @@ module.exports = class AuthControllers {
           email: user.email,
           password: user.password,
           name: user.name,
+          lastName: user.lastName,
+          number: user.number,
+          id: user._id,
         },
         "secret"
       );
@@ -88,17 +93,19 @@ module.exports = class AuthControllers {
     } catch (e) {
       return res.status(500).json({
         success: false,
-        message: "unknown error",
+        message: "something got wrong",
       });
     }
   }
+
+  // AUTH CONTROLLER
 
   static async Auth(req, res) {
     try {
       console.log("user authenticated");
       res.json(req.user);
     } catch (e) {
-      console.log("error");
+      console.log("something got wrong");
     }
   }
 };
