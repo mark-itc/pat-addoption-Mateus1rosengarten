@@ -18,8 +18,6 @@ import UserPage from "./pages/adminPages/UserPage";
 function App() {
   const { authState } = useContext(authStates);
 
-
-
   return (
     <>
       <UserContexts>
