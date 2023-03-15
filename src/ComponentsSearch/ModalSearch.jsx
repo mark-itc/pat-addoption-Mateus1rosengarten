@@ -1,48 +1,39 @@
-import userEvent from "@testing-library/user-event";
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useRef,useContext } from "react";
+import { useRef, useContext } from "react";
 import { petContext } from "../Context/PetContext";
 
-function ModalSearch({ toggleModal}) {
-const {stateFullSearch,setStateFullSearch} = useContext(petContext)
-const { queryType, setQueryType } = useContext(petContext);
-const {searchList,setSearchList} = useContext(petContext);
-const [petobject,setPetObject] = useState(false)
-
+function ModalSearch({ toggleModal }) {
+  const { setStateFullSearch } = useContext(petContext);
+  const { setQueryType } = useContext(petContext);
+  const { setSearchList } = useContext(petContext);
 
   const nameRef = useRef();
   const heigthRef = useRef();
   const weightRef = useRef();
   const typeRef = useRef();
   const statusRef = useRef();
-  
+
   let resp;
 
   const advancedSearch = async () => {
     setTimeout(() => {
-        
-        setQueryType('Advanced')
-        setSearchList(true)
+      setQueryType("Advanced");
+      setSearchList(true);
+    }, 2000);
 
-    },2000)
-
-    
-    
     let parameters = {
       name: nameRef.current.value,
       heigth: heigthRef.current.value,
       weight: weightRef.current.value,
       type: typeRef.current.value,
-      status: statusRef.current.value
+      status: statusRef.current.value,
     };
     try {
-        resp = await axios.get("http://localhost:3000/fullsearch", {
+      resp = await axios.get("http://localhost:3000/fullsearch", {
         params: { ...parameters },
       });
       console.log(resp.data.pets);
-      setStateFullSearch(resp.data.pets)
+      setStateFullSearch(resp.data.pets);
     } catch (error) {
       console.log("error", error);
     }
@@ -77,7 +68,7 @@ const [petobject,setPetObject] = useState(false)
             ref={weightRef}
           />
 
-<label className="label-search" htmlFor="status">
+          <label className="label-search" htmlFor="status">
             Status
           </label>
           <input
