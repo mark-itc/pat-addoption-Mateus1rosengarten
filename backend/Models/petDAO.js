@@ -24,15 +24,12 @@ module.exports = class PetDAO {
   }
 
   static async getPetsbyType(petType) {
-    const petTypeResult = await petCollection
-      .find({ petInfo: { type: petType } })
-      .toArray();
+    const petTypeResult = await petCollection.find({ type: petType }).toArray();
     return petTypeResult;
   }
 
   static async getPetById(id) {
     const findPet = await petCollection.findOne({ _id: new ObjectId(id) });
-    console.log("testando", findPet);
     return findPet;
   }
 
@@ -46,25 +43,18 @@ module.exports = class PetDAO {
     return userPet;
   }
 
-  static async GetManyPets(ids) {
-    return await petCollection.find({ _id: ids }).toArray();
+  static async GetFullPet(queryObj) {
+    return await petCollection.find(queryObj).toArray();
   }
 
   static async updatePet(petId, newData) {
-    try {
-      const pets = await petCollection.updateOne(
-        {
-          _id: ObjectId(petId),
-        },
-        {
-          $set: newData,
-        }
-      );
-
-      console.log("updatepet", pets);
-      return pets;
-    } catch (err) {
-      console.log("unknow error happening");
-    }
+    return await petCollection.updateOne(
+      {
+        _id: ObjectId(petId),
+      },
+      {
+        $set: newData,
+      }
+    );
   }
 };

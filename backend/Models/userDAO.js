@@ -26,10 +26,7 @@ module.exports = class UsersDAO {
   }
 
   static async updateUser(userEmail, userData) {
-    await userCollection.updateOne(
-      { email: userEmail },
-      { $set: { userData } }
-    );
+    await userCollection.updateOne({ email: userEmail }, { $set: userData });
   }
 
   static async getUserById(userId) {
@@ -41,14 +38,14 @@ module.exports = class UsersDAO {
   }
 
   static async adoptPetToUser(userEmail, pet) {
-    await userCollection.updateOne(
+    return await userCollection.updateOne(
       { email: userEmail },
       { $push: { adopted: pet } }
     );
   }
 
   static async fosterPetToUser(userEmail, pet) {
-    await userCollection.updateOne(
+    return await userCollection.updateOne(
       { email: userEmail },
       { $push: { fostered: pet } }
     );
@@ -66,14 +63,14 @@ module.exports = class UsersDAO {
   }
 
   static async savePetToUser(userEmail, pet) {
-    await userCollection.updateOne(
+    return await userCollection.updateOne(
       { email: userEmail },
       { $push: { saved: pet } }
     );
   }
 
   static async UnSavePetFromUser(userEmail, pet) {
-    await userCollection.updateOne(
+    return await userCollection.updateOne(
       { email: userEmail },
       { $pull: { saved: pet } }
     );
