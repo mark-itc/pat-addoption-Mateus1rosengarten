@@ -26,14 +26,22 @@ function AuthContext({ children }) {
     setTokenValue(localStorage.getItem("apiKey"));
     setTimeout(() => {
      
-    }, 2000);
+     
+    }, 8000);
   }, []);
 
+ let response 
+
+// {setTimeout(() => {
+//   setLoginObject(response)
+//   console.log('agora',loginObject)
+  
+// }, 10000);}
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/auth", {
+        response = await axios.get("http://localhost:3000/auth", {
           headers: {
             accessToken: tokenValue,
           },
