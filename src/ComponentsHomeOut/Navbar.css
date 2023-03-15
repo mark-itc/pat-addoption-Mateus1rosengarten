@@ -46,9 +46,22 @@ ul {
 
     .styleh1{
         position: absolute;
-        top: 120px;
-        left:420px;
+        top: 150px;
+        left:480px;
         text-align: center;
-        font-size: 60px;
+        font-size: 80px;
     }
- 
+    
+ .styleh2{
+    position: absolute;
+    top:220px;
+    left: 550px;
+    font-size: 40px;
+ }
+
+ .styleh3{
+    position: absolute;
+    top:250px;
+    left: 690px;
+    font-size: 60px;
+ }

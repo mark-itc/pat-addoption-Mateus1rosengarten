@@ -9,14 +9,21 @@ function LoginModal({ toggleModal }) {
 
   const navigate = useNavigate();
 
+  setTimeout(() => {
+    console.log('lgob',loginObject)
+
+  },4000)
+
   const handleLogin = () => {
-    console.log(loginObject);
+    console.log('login',loginObject);
 
     const loginPath = "http://localhost:3000/login";
     axios.post(loginPath, { ...loginObject }).then((res) => {
       console.log(res);
       const mytoken = res.data.token;
       localStorage.setItem("apiKey", mytoken);
+      setLoginObject(res)
+      
       navigate("/user");
       navigate(0);
     });

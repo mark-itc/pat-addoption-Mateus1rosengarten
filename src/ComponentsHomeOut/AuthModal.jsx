@@ -28,9 +28,9 @@ function AuthModal({ toggleModal }) {
           if (resp.sucess === false) {
             let message = resp.message;
           } else {
-            localStorage.setItem("apiKey", resp.token);
-            alert("sucess");
-            navigate("/user");
+            // localStorage.setItem("apiKey", resp.token);
+            alert("Sucess,please Login !");
+            navigate(0)
           }
         });
 

@@ -15,7 +15,8 @@
   }
 
   .modal-content {
-    position: absolute;
+    display: block;
+    position: fixed;
     top: 100px;
     left: 550px;
     padding: 30px;
