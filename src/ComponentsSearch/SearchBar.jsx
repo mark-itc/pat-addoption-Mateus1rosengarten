@@ -5,13 +5,17 @@ import { petContext } from "../Context/PetContext";
 
 function SearchComponent({ inputCatValue, inputDogValue }) {
   const [modal, setModal] = useState(false);
+  const { queryType, setQueryType } = useContext(petContext);
 
   const openingModal = () => {
+    setQueryType(false)
     setModal(true);
   };
 
   const togglingModal = () => {
+    
     setModal(!modal);
+    
   };
 
   return (

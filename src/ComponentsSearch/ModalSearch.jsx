@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useRef, useContext } from "react";
 import { petContext } from "../Context/PetContext";
+import { globalStates } from "../Context/StatesContexts";
 
 function ModalSearch({ toggleModal }) {
   const { setStateFullSearch } = useContext(petContext);
   const { setQueryType } = useContext(petContext);
   const { setSearchList } = useContext(petContext);
+  const {modal, setModal,popUp,setPopUp} = useContext(globalStates);
+  
 
   const nameRef = useRef();
   const heigthRef = useRef();
@@ -17,8 +20,10 @@ function ModalSearch({ toggleModal }) {
 
   const advancedSearch = async () => {
     setTimeout(() => {
+      console.log('olar')
       setQueryType("Advanced");
       setSearchList(true);
+      setModal(!modal)
     }, 2000);
 
     let parameters = {
@@ -42,6 +47,7 @@ function ModalSearch({ toggleModal }) {
   return (
     <div className="modal-auth">
       <div className="overlay">
+       
         <div className="modal-content">
           <label className="label-search" htmlFor="name">
             Name
@@ -89,7 +95,7 @@ function ModalSearch({ toggleModal }) {
           <button className="modal-exit-button" onClick={toggleModal}>
             X
           </button>
-        </div>
+            </div>
       </div>
     </div>
   );
