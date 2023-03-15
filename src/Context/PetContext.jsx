@@ -8,7 +8,6 @@ export const petContext = createContext();
 
 function PetContext({ children }) {
   const [petInfo, setPetInfo] = useState();
-  const [myPets, setMyPets] = useState([]);
   const [myPetsResult, setMyPetsResult] = useState([]);
   const [queryType,setQueryType] = useState(false);
   const [stateDogType,setStateDogType] = useState('');

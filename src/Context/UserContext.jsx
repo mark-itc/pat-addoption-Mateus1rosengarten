@@ -5,14 +5,17 @@ import { useState } from "react";
 export const userStates = createContext();
 
 function UserContexts({ children }) {
+  const [user, setUser] = useState('');
+  const [userList,setUserList] = useState('')
+  
   useEffect(() => {
     axios.get("http://localhost:3000/user").then((res) => setUser(res.data));
   }, []);
 
-  const [user, setUser] = useState([]);
+
 
   return (
-    <userStates.Provider value={{ user, setUser }}>
+    <userStates.Provider value={{ user, setUser,userList,setUserList }}>
       {children}
     </userStates.Provider>
   );

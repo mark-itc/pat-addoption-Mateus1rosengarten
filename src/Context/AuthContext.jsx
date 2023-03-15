@@ -25,11 +25,11 @@ function AuthContext({ children }) {
   useEffect(() => {
     setTokenValue(localStorage.getItem("apiKey"));
     setTimeout(() => {
-      console.log("tokenval", localStorage.getItem("apiKey"));
+     
     }, 2000);
   }, []);
 
-  console.log("test", authState);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,11 +44,14 @@ function AuthContext({ children }) {
         } else {
           console.log("success", response.data);
           setAuthState({
-            username: response.data.name,
+            name: response.data.name,
+            lastName : response.data.lastName,
+            number : response.data.number,
             email: response.data.email,
             status: true,
             role:response.data.role
-          });
+          })
+          console.log('final',authState);
         }
       } catch (error) {
         console.log("fetchData error:", error);
