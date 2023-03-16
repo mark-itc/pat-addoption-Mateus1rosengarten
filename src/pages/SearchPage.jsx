@@ -48,6 +48,7 @@ function SearchPage() {
                 <div className="cardPet">
                   <img src="" alt="" />
                   <div className="containerPet">
+                    <hr className="hr-card"></hr>
                     <h4 className="h4-card">{item.name.toUpperCase()}</h4>
                     <p>{item.status}</p>
 
@@ -71,6 +72,7 @@ function SearchPage() {
               <div className="cardPet">
                 <img src="" alt="" />
                 <div className="containerPet">
+                <hr className="hr-card"></hr>
                   <h4 className="h4-card">{item.name.toUpperCase()}</h4>
                   <p>{item.status}</p>
 
@@ -94,6 +96,7 @@ function SearchPage() {
               <div className="cardPet">
                 <img src="" alt="" />
                 <div className="containerPet">
+                <hr className="hr-card"></hr>
                   <h4 className="h4-card">{item.name.toUpperCase()}</h4>
                   <p>{item.status}</p>
 

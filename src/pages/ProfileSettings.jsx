@@ -11,6 +11,8 @@ import { useEffect } from "react";
 function ProfileSettings() {
   const { authState,setAuthState } = useContext(authStates);
   const {userList,setUserList} = useContext(userStates);
+
+  
  
   const navigate = useNavigate();
 
@@ -28,10 +30,12 @@ function ProfileSettings() {
 
   setTimeout(()=>{
 
+  
+
     setUserList(true)
     
 
-  },1000)
+  },2000)
 
   const handleUpdate = async () => {
     console.log(authState.email);
@@ -78,7 +82,7 @@ function ProfileSettings() {
           className="input-prof"
           type="text"
           id="name"
-          placeholder={user[0].name}
+         
         />
 
         <label className="label-prof" htmlFor="LastName">
@@ -89,7 +93,7 @@ function ProfileSettings() {
           className="input-prof"
           type="text"
           id="LastName"
-          placeholder={user[0].lastName}
+          
         />
 
         <label className="label-prof" htmlFor="phone">
@@ -100,7 +104,7 @@ function ProfileSettings() {
           className="input-prof"
           type="number"
           id="phone"
-          placeholder={user[0].number}
+          
         />
 
          <label className="label-prof" htmlFor="e-mail">
@@ -111,7 +115,7 @@ function ProfileSettings() {
           className="input-prof"
           type="email"
           id="e-mail"
-          placeholder={user[0].email}
+         
         /> 
 
         <label className="label-prof" htmlFor="pass">
