@@ -35,7 +35,7 @@ function ProfileSettings() {
     setUserList(true)
     
 
-  },2000)
+  },500)
 
   const handleUpdate = async () => {
     console.log(authState.email);
