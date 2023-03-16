@@ -1,7 +1,7 @@
 .div-cardsPets {
     position: absolute;
-    top: 50px;
-    left: 65px;
+    top: 100px;
+    left: 25vw;
     height: 90vh;
     width: 90vw;
     border: solid 1px black;
@@ -10,7 +10,7 @@
 .addopt-button{
     position: absolute;
     bottom: 160px;
-    left: 350px;
+    left: 25vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;
@@ -22,7 +22,7 @@
 .foster-button {
     position: absolute;
     bottom: 160px;
-    left: 500px;
+    left: 35vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;
@@ -34,7 +34,7 @@
 .return-button{
     position: absolute;
     bottom: 160px;
-    left:650px;
+    left:45vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;
@@ -46,7 +46,7 @@
 .save-buton{
     position: absolute;
     bottom: 160px;
-    left: 800px;
+    left: 55vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;
@@ -58,7 +58,7 @@
 .unSave-buton{
     position: absolute;
     bottom: 160px;
-    left: 950px;
+    left: 65vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;

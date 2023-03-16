@@ -1,16 +1,17 @@
 .card {
     position: relative;
-    width: 450px;
-    height: 500px;
-    left: 470px;
+    width: 30vw;
+    height:60vh;
+    left: 32vw;
 }
 
 .info-card{
     position: absolute;
     width: 125px;
     height: 140px;
-    top: 150px;
+    top: 25vh;
     left: 20px;
+    
 }
 
 .cardMyPet {
