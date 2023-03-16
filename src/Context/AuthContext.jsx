@@ -5,19 +5,16 @@ import axios from "axios";
 export const authStates = createContext();
 
 function AuthContext({ children }) {
-  const [value, setValue] = useState({
-    name: "",
-    lastName: "",
-    number: "",
-    email: "",
-    password: "",
-  });
+  const [value, setValue] = useState(false);
 
   const [tokenValue, setTokenValue] = useState("");
-  const [loginObject, setLoginObject] = useState({});
+  const [loginObject, setLoginObject] = useState('');
   const [authState, setAuthState] = useState({
-    username: "",
+    name: '',
+    lastName: '',
     id: 0,
+    email: '',
+    number: '',
     status: false,
     role: "user",
   });
@@ -25,9 +22,11 @@ function AuthContext({ children }) {
   useEffect(() => {
     setTokenValue(localStorage.getItem("apiKey"));
     setTimeout(() => {
+      console.log('auth',authState)
+      console.log('tkn',tokenValue)
      
      
-    }, 8000);
+    }, 2000);
   }, []);
 
  let response 
@@ -50,7 +49,8 @@ function AuthContext({ children }) {
           console.log("No success", response.data.error);
           setAuthState((prevState) => ({ ...prevState, status: false }));
         } else {
-          console.log("success", response.data);
+          console.log("success", response.data.name);
+          console.log('token',tokenValue)
           setAuthState({
             name: response.data.name,
             lastName : response.data.lastName,
@@ -59,7 +59,6 @@ function AuthContext({ children }) {
             status: true,
             role:response.data.role
           })
-          console.log('final',authState);
         }
       } catch (error) {
         console.log("fetchData error:", error);
