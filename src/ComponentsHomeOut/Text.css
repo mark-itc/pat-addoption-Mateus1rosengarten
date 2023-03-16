@@ -3,8 +3,9 @@
 
 .h1-style{
     position: absolute;
-    top: 140px;
-    left: 385px;
+    top: 17vh;
+    left: 14vw;
+    font-size: 80px;
     color: white;
     font-family: 'Hind Siliguri';
 
@@ -12,9 +13,11 @@
 
 .h3-style{
     position: absolute;
-    top: 200px;
-    left: 370px;
+    top: 29vh;
+    left: 20vw;
     color: white;
+    font-size: 50px;
+    
 
 
 }
