@@ -24,7 +24,7 @@ function ModalSearch({ toggleModal }) {
       setQueryType("Advanced");
       setSearchList(true);
       setModal(!modal)
-    }, 2000);
+    }, 500);
 
     let parameters = {
       name: nameRef.current.value,
