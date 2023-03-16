@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams,useNavigate } from "react-router";
 import PetCard from "../ComponentsMyPets/PetCard";
 import axios from "axios";
 import { useContext } from "react";
@@ -7,11 +7,15 @@ import { useState } from "react";
 import "../ComponentsMyPets/Card.css";
 import { authStates } from "../Context/AuthContext";
 
+
 function PetPage() {
   const [fullInfoPet, setFullInfoPet] = useState({});
   const [statusInfo, setStatusInfo] = useState("");
   const { authState, setAuthState } = useContext(authStates);
+  const navigate = useNavigate()
   const { id } = useParams();
+  
+
 
   useEffect(() => {
     if (id) {
@@ -38,6 +42,7 @@ function PetPage() {
             alert("Error trying to addopt");
           } else {
             alert("Pet Adopted !!");
+            navigate(0)
           }
         });
     }
@@ -54,6 +59,7 @@ function PetPage() {
             alert("Error trying to foster");
           } else {
             alert("Pet Fostered !!");
+            navigate(0)
           }
         });
     }
@@ -70,6 +76,7 @@ function PetPage() {
             alert("Error trying to return");
           } else {
             alert("Pet Returned !!");
+            navigate(0)
           }
         });
     }
@@ -86,6 +93,7 @@ function PetPage() {
             alert("Error trying to save");
           } else {
             alert("Pet saved !!");
+            navigate()
           }
         });
     }
@@ -102,6 +110,7 @@ function PetPage() {
             alert("Error trying to Unsave");
           } else {
             alert("Pet Unsaved !!");
+            navigate()
           }
         });
     }

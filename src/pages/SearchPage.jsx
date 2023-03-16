@@ -40,7 +40,7 @@ function SearchPage() {
       <div className="result-list">
         {queryType === "Cat" && <h1 className="all-pet-text">All Cats</h1>}
         {queryType === "Dog" && <h1 className="all-pet-text">All Dogs</h1>}
-        {queryType === "Advanced" && <h1 className="all-pet-text">Results</h1>}
+        
         {queryType === "Dog" &&
           stateDogType.map((item) => {
             return (

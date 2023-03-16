@@ -9,7 +9,7 @@ import { userStates } from "../Context/UserContext";
 import { useEffect } from "react";
 
 function ProfileSettings() {
-  const { authState,setAuthState } = useContext(authStates);
+  const { authState,setAuthState,value,setValue} = useContext(authStates);
   const {userList,setUserList} = useContext(userStates);
 
   
@@ -31,7 +31,7 @@ function ProfileSettings() {
   setTimeout(()=>{
 
   
-
+    console.log('valor',value)
     setUserList(true)
     
 
@@ -57,8 +57,11 @@ function ProfileSettings() {
           setUser(update)
           console.log('stateAfter',user)
           setUserList(false)
-          navigate(0)
-          
+          alert('Please Login to see Changes =)')
+          window.localStorage.clear();
+    
+    navigate("/");
+    navigate(0);
         }
 
       } )
@@ -82,6 +85,7 @@ function ProfileSettings() {
           className="input-prof"
           type="text"
           id="name"
+          placeholder={value.data.name}
          
         />
 
@@ -93,6 +97,7 @@ function ProfileSettings() {
           className="input-prof"
           type="text"
           id="LastName"
+          placeholder={value.data.lastName}
           
         />
 
@@ -104,6 +109,7 @@ function ProfileSettings() {
           className="input-prof"
           type="number"
           id="phone"
+          placeholder={value.data.number}
           
         />
 
@@ -115,6 +121,7 @@ function ProfileSettings() {
           className="input-prof"
           type="email"
           id="e-mail"
+          placeholder={value.data.email}
          
         /> 
 

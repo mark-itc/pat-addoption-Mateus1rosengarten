@@ -4,35 +4,63 @@ import { authStates } from "../Context/AuthContext";
 import axios from "axios";
 
 function HomeLogIn() {
-  const { loginObject, setLoginObject,authState,value,tokenValue } = useContext(authStates);
-  const [getID,setGetID] = useState(false);
+  const { loginObject, setLoginObject,authState,setAuthState,value,setValue,tokenValue,setTokenValue } = useContext(authStates);
 
-  let idUser;
+
+
 
   useEffect(()=> {
-console.log('loginobj',loginObject)
-console.log('authst',authState)
-console.log('valeue',value)
-console.log('tokenvl',tokenValue)
+setTokenValue(localStorage.getItem("apiKey"));
+
+
   },[])
 
-  
 
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/user/${idUser.id}`).then((res) => {
-  //     console.log("minharesp", res);
-      
+  setTimeout(() => {
     
-  //   });
 
-  // },[getID])
+   
+    setLoginObject('Authorized')
+
+  },500)
+
+
+
   
 
-  return (
-    <> <h1 className="styleh1">Welcome </h1> 
+  let response 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        response = await axios.get("http://localhost:3000/auth", {
+          headers: {
+            accessToken: tokenValue,
+          },
+        });
+        if (response.data.error) {
+          console.log("No success", response.data.error);
+          setAuthState((prevState) => ({ ...prevState, status: false }));
+        } else {
+          console.log("success", response.data.name);
+          setValue(response)
+          
+        }
+      } catch (error) {
+        console.log("fetchData error:", error);
+        setAuthState((prevState) => ({ ...prevState, status: false }));
+      }
+    };
+    fetchData();
+    
+  }, [tokenValue]);
+  
+
+  return (  
+    <> 
+    {loginObject === "Authorized" && <h1 className="styleh1">Welcome {value.data.name} {value.data.lastName} </h1> }
     <h2 className="styleh2">Start your search for Pets !!  </h2>
-    <h3 className="styleh3">HAVE FUN </h3>
+    <h3 className="styleh3">HAVE FUN </h3> 
      
     </>
   );
