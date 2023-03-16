@@ -1,18 +1,20 @@
 .h2-text{
    
-    margin-top: 100px;
+    margin-top: 10vh;
     text-align: center;
+    font-size: 80px;
+    font-family: Verdana,sans-serif;
 
 }
 
 .hr-form-init{
     position: absolute;
-    top: 200px;
-    left: 450px;
+    top: 30vh;
+    left: 20vw;
    
         border:none;
         height: 20px;
-           width: 40%;
+           width: 60%;
           border-bottom: 1px solid black;
           box-shadow: 0 20px 20px -20px #333;
         margin: -50px auto 10px; 
@@ -21,12 +23,12 @@
 
 .hr-form-end{
     position: absolute;
-    bottom: 10px;
-    left: 450px;
+    bottom: 10vh;
+    left: 20vw;
    
         border:none;
         height: 20px;
-           width: 40%;
+           width: 60%;
           border-bottom: 1px solid black;
           box-shadow: 0 20px 20px -20px #333;
         margin: -50px auto 10px; 
@@ -43,21 +45,33 @@
 }
 
 .input-prof , .textarea-profile{
+    position: relative;
+    top: 10vh;
+    left: 11vw;
     
    width: 300px;
    display: block;
    margin: 5px;
 }
 
-label {
+.label-prof {
     font-weight: bold;
+    position: relative;
+    top: 13vh;
+    left: 2vw;
+}
+
+label{
+    font-weight: bold;
+    position: relative;
+
 }
 
 .save-button{
     position: absolute;
-    right: 550px;
-    bottom: 75px;
-    width: 300px;
+    right: 42vw;
+    bottom: 15vh;
+    width: 17vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;
