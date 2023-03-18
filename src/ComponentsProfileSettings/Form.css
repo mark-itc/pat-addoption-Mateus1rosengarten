@@ -23,7 +23,7 @@
 
 .hr-form-end{
     position: absolute;
-    bottom: 10vh;
+    bottom: 5vh;
     left: 20vw;
    
         border:none;
@@ -40,14 +40,14 @@
     width: 40vw;
     height: 70vh;
     top: 200px;
-    left:580px;
+    left:30vw;
     
 }
 
 .input-prof , .textarea-profile{
     position: relative;
-    top: 10vh;
-    left: 11vw;
+    top: vh;
+    left: 15vw;
     
    width: 300px;
    display: block;
@@ -57,21 +57,22 @@
 .label-prof {
     font-weight: bold;
     position: relative;
-    top: 13vh;
-    left: 2vw;
+    top: 4vh;
+    left: 1vw;
 }
 
 label{
     font-weight: bold;
     position: relative;
+    left: 1vw;
 
 }
 
 .save-button{
     position: absolute;
-    right: 42vw;
-    bottom: 15vh;
-    width: 17vw;
+    right: 34vw;
+    bottom: 11vh;
+    width: 20vw;
     border-radius: 5px!important;
     background-color: #f2f2f2!important;
     padding: 11px 13px!important;
