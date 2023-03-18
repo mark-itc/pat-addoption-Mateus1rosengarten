@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import "../ComponentsMyPets/Card.css";
 import { authStates } from "../Context/AuthContext";
+import { userStates } from "../Context/UserContext";
 
 
 function PetPage() {
@@ -129,14 +130,14 @@ function PetPage() {
         breed={fullInfoPet.breed}
         dietary={fullInfoPet.diet}
       />
-
-      <button onClick={handleAdopt} className="addopt-button">
+        
+      <button disabled={fullInfoPet.status === 'Adopted'} onClick={handleAdopt} className="addopt-button">
         Addopt
       </button>
-      <button onClick={handleFoster} className="foster-button">
+      <button disabled={fullInfoPet.status === 'Fostered' || fullInfoPet.status === 'Adopted'}  onClick={handleFoster} className="foster-button">
         Foster
       </button>
-      <button onClick={handleReturn} className="return-button">
+      <button disabled={fullInfoPet.status === 'Avaible'} onClick={handleReturn} className="return-button">
         Return
       </button>
       <button onClick={handleSave} className="save-buton">

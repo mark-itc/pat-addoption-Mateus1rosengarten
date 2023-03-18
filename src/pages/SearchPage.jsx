@@ -12,28 +12,31 @@ function SearchPage() {
   const { stateFullSearch } = useContext(petContext);
   const navigate = useNavigate();
 
-  const handleSearch = () => {
-    if (queryType == "Dog") {
-      setStateCatType("");
-      setSearchList(false);
-    }
-    if (queryType == "Cat") {
-      setStateDogType("");
-      setSearchList(false);
-    }
+  // const handleSearch = () => {
+  //   if (queryType == "Dog") {
+  //     setStateCatType("");
+  //     setSearchList(false);
+  //   }
+  //   if (queryType == "Cat") {
+  //     setStateDogType("");
+  //     setSearchList(false);
+  //   }
 
-    if (queryType == "Advanced") {
-      setStateCatType("");
-      setStateDogType("");
-    }
-  };
+  //   if (queryType == "Advanced") {
+  //     setStateCatType("");
+  //     setStateDogType("");
+  //   }
+  // };
+
+  
 
   return (
     <>
       <SearchComponent
-        inputCatValue={(e) => setQueryType("Cat")}
-        inputDogValue={(e) => setQueryType("Dog")}
-        handlingBasicSearch={handleSearch}
+        inputCatValue={() => setQueryType("Cat")
+        }
+        inputDogValue={() => setQueryType("Dog")}
+        // handlingBasicSearch={handleSearch}
         setPetInfo={setPetInfo}
       />
 

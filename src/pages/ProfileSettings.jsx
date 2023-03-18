@@ -53,12 +53,9 @@ function ProfileSettings() {
         } else {
           
           alert("User updated successfully");
-          console.log('state',user)
-          setUser(update)
-          console.log('stateAfter',user)
-          setUserList(false)
-          alert('Please Login to see Changes =)')
+          alert('Please Login to see Changes =) ** working on solve it **')
           window.localStorage.clear();
+          setValue(update)
     
     navigate("/");
     navigate(0);
