@@ -9,7 +9,7 @@
     position: absolute;
     width: 125px;
     height: 140px;
-    top: 25vh;
+    top: 5vh;
     left: 20px;
     
 }
@@ -18,7 +18,17 @@
     position: absolute;
     width: 200px;
     height: 250px;
-    top: 150px;
-    left: 50px;
+    top: 0px;
+    left: 0px;
     border: 1px solid blue;
+}
+
+.h6-card{
+    font-size: 16px;
+    
+}
+
+.h6-result{
+    font-weight: bold;
+    font-size: 16px;
 }

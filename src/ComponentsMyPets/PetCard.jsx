@@ -5,15 +5,15 @@ function PetCard({ name, status, type, hei, wei, color, bio, breed, dietary }) {
     <div className="card">
       <img src="" alt="" />
       <div className="info-card">
-        <h6>Name : {name} </h6>
-        <h6>Status : {status}</h6>
-        <h6>Type : {type}</h6>
-        <h6>Heigth : {hei} cm</h6>
-        <h6>Weigth : {wei} kg</h6>
-        <h6>Color : {color}</h6>
-        <h6>Bio : {bio} </h6>
-        <h6>Breed : {breed}</h6>
-        <h6>Dietary Restrictions: {dietary}</h6>
+        <h6 className="h6-card">Name  <h6 className="h6-result"> {name}</h6> </h6>
+        <h6 className="h6-card">Status  <h6 className="h6-result">  {status}</h6></h6>
+        <h6 className="h6-card">Type  <h6 className="h6-result">  {type}</h6> </h6>
+        <h6 className="h6-card">Heigth  <h6 className="h6-result">  {hei} cm</h6> </h6>
+        <h6 className="h6-card">Weigth  <h6 className="h6-result">  {wei} kg</h6></h6>
+        <h6 className="h6-card">Color  <h6 className="h6-result">  {color}</h6></h6>
+        <h6 className="h6-card">Bio  <h6 className="h6-result">  {bio} </h6></h6>
+        <h6 className="h6-card">Breed  <h6 className="h6-result">  {breed}</h6></h6>
+        <h6 className="h6-card">Dietary Restrictions <h6 className="h6-result">  {dietary}</h6></h6>
       </div>
     </div>
   );
