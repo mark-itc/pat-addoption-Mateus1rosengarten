@@ -47,7 +47,7 @@ ul {
     .styleh1{
         position: absolute;
         top: 18vh;
-        left:12vw;
+        left:2vw;
         text-align: center;
         font-size: 80px;
         
@@ -55,14 +55,14 @@ ul {
     
  .styleh2{
     position: absolute;
-    top:32vh;
+    top:42vh;
     left:35vw;
     font-size: 40px;
  }
 
  .styleh3{
     position: absolute;
-    top:38vh;
+    top:48vh;
     left: 40vw;
     font-size: 60px;
  }

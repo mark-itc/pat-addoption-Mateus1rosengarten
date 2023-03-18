@@ -29,7 +29,7 @@ function AuthModal({ toggleModal }) {
             let message = resp.message;
           } else {
             // localStorage.setItem("apiKey", resp.token);
-            alert("Sucess,please Login !");
+            alert("Sucess,please Login ** working on implement autologin!");
             navigate(0)
           }
         });
