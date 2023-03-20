@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./FormAdd.css";
 
@@ -15,7 +15,10 @@ function Form() {
     bio: "",
     dietary: "",
     breed: "",
+    image: ""
+    
   });
+  const [petPhoto,setPetPhoto] = useState('');
 
   const type = petInfo.type;
   const name = petInfo.name;
@@ -25,8 +28,11 @@ function Form() {
   const bio = petInfo.bio;
   const dieatary = petInfo.dietary;
   const breed = petInfo.breed;
+  const image = petInfo.image
+  
 
-  const addPet = () => {
+  const addPet = (event) => {
+    event.preventDefault();
     console.log(petInfo);
     axios
       .post("http://localhost:3000/petadd", {
@@ -38,6 +44,8 @@ function Form() {
         bio,
         dieatary,
         breed,
+        image
+        
       })
       .then((res) => {
         console.log(res);
@@ -45,10 +53,37 @@ function Form() {
       });
   };
 
+  const addPic = async () => {
+    const formData = new FormData();
+    formData.append("image", petPhoto);
+
+    const response = await fetch("http://localhost:3000/petadd/pic", {
+      method: "POST",
+      body: formData,
+    });
+    
+    const data = await response.json();
+    setPetInfo((prevState) => ({
+      ...prevState,
+      image: data.url,
+    }));
+
+  };
+
+  useEffect(() => {
+    addPic();
+
+  },[petPhoto])
+
+  const handlePictureUpload = async (e) => {
+    setPetPhoto(e.target.files[0])
+  }
+
   return (
     <>
       <div className="box-add">
         <h2 className="h2-form">Add a Pet</h2>
+        <form encType="multipart/form-data"> 
         <label className="label-form" htmlFor="typeOf">
           Type
         </label>
@@ -126,18 +161,18 @@ function Form() {
           Image
         </label>
         <input
-          name="file"
+         type="file"
+          name="image"
           className="input-form"
-          onChange={(e) => {
-            setPetInfo({ ...petInfo, file: e.target.files[0] });
-          }}
-          type="file"
+          onChange={handlePictureUpload}
+      
           id="imageOf"
         />
 
-        <button className="add-btn" onClick={addPet}>
+        <button type="submit" className="add-btn" onClick={addPet}>
           ADD PET
         </button>
+        </form>
       </div>
     </>
   );
