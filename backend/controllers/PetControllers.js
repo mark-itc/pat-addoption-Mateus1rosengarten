@@ -1,10 +1,14 @@
 const PetDAO = require("../Models/petDAO");
+const UsersDAO = require("../Models/userDAO")
 const ModelImg = require("../validation/ImageModelValidation");
+const cloudinary = require('../Utils/claudinary');
+const upload = require('../Utils/multer');
+
 
 module.exports = class PetControllers {
   static async createPet(req, res) {
     try {
-      const validRequest = ModelImg(req.body.file);
+      const validRequest = ModelImg(req.body.file)
       if (!validRequest) {
         return res.status(400).json({
           sucess: false,
@@ -13,15 +17,25 @@ module.exports = class PetControllers {
       }
 
       const pet = req.body;
-
-      //  pet.file = "http://localhost:3000/" + req.file.path;
-
       const petCreated = await PetDAO.addPet(pet);
 
       res.status(200).json(petCreated);
+      console.log('petcre',petCreated)
     } catch (error) {
-      res.status(404).json({ message: "something got wrong " });
+      res.status(404).json({ message: "something got wrong..." });
     }
+  }
+
+  static async pictureProvider(req,res) {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path)
+      console.log('resultado',result)
+      return res.send({url : result.secure_url})
+    }
+    catch(error) {
+      console.log('Error uploading picture',error)
+    }
+
   }
 
   static async getAllPets(req, res) {
@@ -103,13 +117,27 @@ module.exports = class PetControllers {
     }
   }
 
-  static async findPetByUserID(req, res) {
-    const { id } = req.params;
+  static async getPetsByUserId(req, res) {
     try {
-      const pet = PetDAO.getPetByUserId(id);
-      res.status(200).json(pet);
-    } catch {
-      res.status(404).json({ message: "something got wrong" });
+      const userId = await UsersDAO.getUserById(req.params.id);
+      const user = await PetDAO.getPetByListOfId(userId)
+      
+    
+      
+        const savedList = await PetDAO.getPetByListOfId(user.saved);
+        const adoptList = await PetDAO.getPetByListOfId(user.adopted);
+
+        console.log('svd',savedList)
+
+        res.status(200).send({
+          success: true,
+          message: "success",
+          pets: { savd: savedList, owned: adoptList },
+        });
+      
+      return user;
+    } catch (error) {
+      console.log(error);
     }
   }
-};
+}
