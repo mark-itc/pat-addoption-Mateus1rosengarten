@@ -1,15 +1,16 @@
 .card {
     position: relative;
     width: 30vw;
-    height:60vh;
+    height:80vh;
     left: 32vw;
+    top:15vh;
 }
 
 .info-card{
     position: absolute;
     width: 125px;
     height: 140px;
-    top: 5vh;
+    top: 19vh;
     left: 20px;
     
 }
@@ -25,10 +26,19 @@
 
 .h6-card{
     font-size: 16px;
+    margin-top: 7px
     
 }
 
 .h6-result{
     font-weight: bold;
     font-size: 16px;
+}
+
+.img-card {
+    position: absolute;
+    width: 29.9vw;
+    height: 150px;
+    margin-bottom: 5px;
+    
 }

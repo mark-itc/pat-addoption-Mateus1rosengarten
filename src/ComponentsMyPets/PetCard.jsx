@@ -1,10 +1,12 @@
 import "./PetCard.css";
 
-function PetCard({ name, status, type, hei, wei, color, bio, breed, dietary }) {
+function PetCard({ imag,name, status, type, hei, wei, color, bio, breed, dietary }) {
   return (
     <div className="card">
       <img src="" alt="" />
-      <div className="info-card">
+     
+        <img className="img-card" src={imag} alt=""></img>
+        <div className="info-card">
         <h6 className="h6-card">Name  <h6 className="h6-result"> {name}</h6> </h6>
         <h6 className="h6-card">Status  <h6 className="h6-result">  {status}</h6></h6>
         <h6 className="h6-card">Type  <h6 className="h6-result">  {type}</h6> </h6>
@@ -14,6 +16,8 @@ function PetCard({ name, status, type, hei, wei, color, bio, breed, dietary }) {
         <h6 className="h6-card">Bio  <h6 className="h6-result">  {bio} </h6></h6>
         <h6 className="h6-card">Breed  <h6 className="h6-result">  {breed}</h6></h6>
         <h6 className="h6-card">Dietary Restrictions <h6 className="h6-result">  {dietary}</h6></h6>
+        
+        
       </div>
     </div>
   );
