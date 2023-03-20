@@ -40,7 +40,8 @@ module.exports = class AuthControllers {
           name: userObject.name,
           email: userObject.email,
         },
-        "secret"
+        "secret",
+        {expiresIn:'12h'}
       );
 
       console.log("mytoke", token);
@@ -80,7 +81,8 @@ module.exports = class AuthControllers {
           number: user.number,
           id: user._id,
         },
-        "secret"
+        "secret",
+        {expiresIn:'12h'}
       );
 
       return res.json({
