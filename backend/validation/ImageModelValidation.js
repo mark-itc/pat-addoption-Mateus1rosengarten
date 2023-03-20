@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 
-const imageSchema = mongoose.Schema(
+const imageSchema = new mongoose.Schema(
   {
-    file: {
+    avatar: {
       type: String,
       required: true,
     },
+    cloudID : {
+      type: String,
+    }
   },
-  {
-    versionKey: false,
-  }
+
 );
 
 const ModelImg = mongoose.model("Picture", imageSchema);
