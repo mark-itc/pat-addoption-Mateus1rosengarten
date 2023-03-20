@@ -9,7 +9,7 @@ import { userStates } from "../Context/UserContext";
 import { useEffect } from "react";
 
 function ProfileSettings() {
-  const { authState,setAuthState,value,setValue} = useContext(authStates);
+  const { authState,setAuthState,value,setValue,tokenValue,setTokenValue} = useContext(authStates);
   const {userList,setUserList} = useContext(userStates);
 
   
@@ -27,17 +27,43 @@ function ProfileSettings() {
     role : "user"
   });
 
+  
+  let response
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        response = await axios.get("http://localhost:3000/auth", {
+          headers: {
+            accessToken: tokenValue,
+          },
+        });
+        if (response.data.error) {
+          console.log("No success", response.data.error);
+          setAuthState((prevState) => ({ ...prevState, status: false }));
+        } else {
+          console.log("success", response.data.name);
+          setValue(response)
+          
+        }
+      } catch (error) {
+        console.log("fetchData error:", error);
+        setAuthState((prevState) => ({ ...prevState, status: false }));
+      }
+    };
+    fetchData();
+    
+  }, [tokenValue]);
 
   setTimeout(()=>{
 
   
-    console.log('valor',value)
+    console.log('valorAqui',value)
     setUserList(true)
     
 
   },500)
 
-  const handleUpdate = async () => {
+  const handleUpdate = () => {
     console.log(authState.email);
 
     
@@ -149,7 +175,7 @@ function ProfileSettings() {
           onChange={(e) => setUpdate({ ...update, bio: e.target.value })}
           className="input-prof"
           id="bio"
-          placeholder={user[0].bio}
+          placeholder={value.data.bio}
         >
           {" "}
         </textarea>

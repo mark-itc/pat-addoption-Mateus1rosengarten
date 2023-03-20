@@ -120,6 +120,7 @@ function PetPage() {
   return (
     <>
       <PetCard
+      imag={fullInfoPet.image}
         name={fullInfoPet.name}
         status={statusInfo}
         type={fullInfoPet.type}
@@ -128,7 +129,7 @@ function PetPage() {
         color={fullInfoPet.color}
         bio={fullInfoPet.bio}
         breed={fullInfoPet.breed}
-        dietary={fullInfoPet.diet}
+        dietary={fullInfoPet.dieatary}
       />
         
       <button disabled={fullInfoPet.status === 'Adopted'} onClick={handleAdopt} className="addopt-button">

@@ -51,10 +51,10 @@ function SearchPage() {
                 <div className="cardPet">
                   <img src="" alt="" />
                   <div className="containerPet">
+                  <img className="img-search" src={item.image} alt=""></img>
                     <hr className="hr-card"></hr>
                     <h4 className="h4-card">{item.name.toUpperCase()}</h4>
-                    <p>{item.status}</p>
-
+                    <p className="p-card">{item.status}</p>
                     <button
                       onClick={() => {
                         navigate(`/pet/${item._id}`);
@@ -73,11 +73,12 @@ function SearchPage() {
           stateCatType.map((item) => {
             return (
               <div className="cardPet">
-                <img src="" alt="" />
+            
                 <div className="containerPet">
+                <img className="img-search" src={item.image} alt=""></img>
                 <hr className="hr-card"></hr>
                   <h4 className="h4-card">{item.name.toUpperCase()}</h4>
-                  <p>{item.status}</p>
+                  <p className="p-card">{item.status}</p>
 
                   <button
                     onClick={() => {
@@ -97,12 +98,12 @@ function SearchPage() {
           stateFullSearch.map((item) => {
             return (
               <div className="cardPet">
-                <img src="" alt="" />
+                
                 <div className="containerPet">
+                <img className="img-search" src={item.image} alt=""></img>
                 <hr className="hr-card"></hr>
                   <h4 className="h4-card">{item.name.toUpperCase()}</h4>
-                  <p>{item.status}</p>
-
+                  <p className="p-card">{item.status}</p>
                   <button
                     onClick={() => {
                       navigate(`/pet/${item._id}`);
