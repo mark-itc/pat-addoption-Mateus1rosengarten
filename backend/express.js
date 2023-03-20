@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const dotenv = require('dotenv');
+const cloudinary = require('./Utils/claudinary')
+dotenv.config()
+const upload = require('./Utils/multer');
+
 
 const AuthControllers = require("./controllers/AuthControllers");
 const UserController = require("./controllers/UserControllers");
@@ -8,7 +13,7 @@ const PetControllers = require("./controllers/PetControllers");
 const { validateToken } = require("./midllewares/AuthMidlleware");
 
 const { initDB } = require("./Models/init");
-const upload = require("./upload");
+
 
 initDB();
 
@@ -33,11 +38,13 @@ app.post("/unsave/:user/:pet", UserController.UnSave);
 
 // PET ROUTES
 
-app.post("/petadd", upload.single("file"), PetControllers.createPet);
+app.post("/petadd/pic", upload.single("image"), PetControllers.pictureProvider);
+app.post("/petadd",PetControllers.createPet)
 app.get("/pet/:id", PetControllers.FindPetById);
 app.get("/search/:type", PetControllers.FindPetByType);
 app.get("/pet", PetControllers.getAllPets);
 app.get("/fullsearch", PetControllers.FindFullPet);
+app.get("/petuser/:id", PetControllers.getPetsByUserId);
 
 app.listen(3000, async () => {
   console.log("Server is running on port : 3000");
