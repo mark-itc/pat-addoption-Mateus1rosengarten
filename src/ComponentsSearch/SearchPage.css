@@ -197,8 +197,23 @@ background-color:#F5EEDC!important;
 position: absolute;
 top: 20vh;
 left: 7vw;
+font-weight: bold;
  
 
+ }
+
+ .p-card{
+  position: absolute;
+  top: 21vh;
+ }
+
+ .img-search {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 21.7vw;
+
+  height: 19vh;
  }
 
  .hr-card{
