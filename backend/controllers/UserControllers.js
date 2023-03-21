@@ -44,11 +44,11 @@ module.exports = class UserController {
   static async Adopt(req, res) {
     try {
       const userEmail = req.params.user;
-      const petId = req.params.pet;
+      const petName = req.params.pet;
       const adoptStatus = { status: "Adopted" };
 
-      await UsersDAO.adoptPetToUser(userEmail, petId);
-      await PetDAO.updatePet(petId, adoptStatus);
+      await UsersDAO.adoptPetToUser(userEmail, petName);
+      await PetDAO.updatePet(petName, adoptStatus);
 
       return res.status(200).json({
         success: true,
@@ -129,10 +129,13 @@ module.exports = class UserController {
 
   static async GetUserPets(req, res, next) {
     try {
-      const { userEmail } = req.params;
-      const user = await UsersDAO.GetUserPets(userEmail);
-
+      const { id } = req.params;
+      const user = await UsersDAO.getUserById(id);
+      console.log('usu',user)
       req.adopted = user.adopted;
+      req.saved = user.saved;
+      req.fostered = user.fostered;
+      console.log('lista',req.saved,req.adopted,req.fostered)
 
       next();
     } catch (error) {

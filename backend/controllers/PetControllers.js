@@ -47,10 +47,21 @@ module.exports = class PetControllers {
     }
   }
 
-  static async FindPetById(req, res) {
-    const { id } = req.params;
+  // static async FindPetById(req, res) {
+  //   const { id } = req.params;
+  //   try {
+  //     const pet = await PetDAO.getPetById(id);
+
+  //     res.status(200).json({ pet: pet });
+  //   } catch {
+  //     res.status(404).json({ message: "something got wrong" });
+  //   }
+  // }
+
+  static async FindPetByName(req, res) {
+    const { name } = req.params;
     try {
-      const pet = await PetDAO.getPetById(id);
+      const pet = await PetDAO.getPetByName(name);
 
       res.status(200).json({ pet: pet });
     } catch {
@@ -119,23 +130,19 @@ module.exports = class PetControllers {
 
   static async getPetsByUserId(req, res) {
     try {
-      const userId = await UsersDAO.getUserById(req.params.id);
-      const user = await PetDAO.getPetByListOfId(userId)
-      
-    
-      
-        const savedList = await PetDAO.getPetByListOfId(user.saved);
-        const adoptList = await PetDAO.getPetByListOfId(user.adopted);
+     const saved = req.saved ? await PetDAO.getPetByListOfName(req.saved) : ['false'];
+     const fostered = req.fostered ? await PetDAO.getPetByListOfName(req.fostered) : ['false'];
+     const adopted = req.adopted ? await PetDAO.getPetByListOfName(req.adopted) : ['false'];
 
-        console.log('svd',savedList)
+        console.log('svd',saved,fostered,adopted)
 
         res.status(200).send({
           success: true,
           message: "success",
-          pets: { savd: savedList, owned: adoptList },
+          saved,
+          fostered,
+          adopted,
         });
-      
-      return user;
     } catch (error) {
       console.log(error);
     }
