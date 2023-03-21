@@ -14,14 +14,17 @@ function PetPage() {
   const [statusInfo, setStatusInfo] = useState("");
   const { authState, setAuthState } = useContext(authStates);
   const navigate = useNavigate()
-  const { id } = useParams();
+  // const { id } = useParams();
+  const {name} = useParams();
+
+  const parametro = fullInfoPet.name
   
 
 
   useEffect(() => {
-    if (id) {
-      console.log("id", id);
-      axios.get(`http://localhost:3000/pet/${id}`).then((res) => {
+    if (name) {
+      console.log("id", name);
+      axios.get(`http://localhost:3000/pet/${name}`).then((res) => {
         console.log("mypey", res.data.pet.name);
         const petFullInfo = res.data.pet;
         console.log("info", petFullInfo);
@@ -37,7 +40,7 @@ function PetPage() {
     } else {
       console.log("estado", authState);
       axios
-        .post(`http://localhost:3000/adopt/${authState.email}/${id}`)
+        .post(`http://localhost:3000/adopt/${authState.email}/${name}`)
         .then((res) => {
           if (res.sucess === false) {
             alert("Error trying to addopt");
@@ -54,7 +57,7 @@ function PetPage() {
       alert("Functionalitty Avaible just to loged Users,Please Login");
     } else {
       axios
-        .post(`http://localhost:3000/foster/${authState.email}/${id}`)
+        .post(`http://localhost:3000/foster/${authState.email}/${name}`)
         .then((res) => {
           if (res.sucess === false) {
             alert("Error trying to foster");
@@ -71,7 +74,7 @@ function PetPage() {
       alert("Functionalitty Avaible just to loged Users,Please Login");
     } else {
       axios
-        .post(`http://localhost:3000/return/${authState.email}/${id}`)
+        .post(`http://localhost:3000/return/${authState.email}/${name}`)
         .then((res) => {
           if (res.sucess === false) {
             alert("Error trying to return");
@@ -88,7 +91,7 @@ function PetPage() {
       alert("Functionalitty Avaible just to loged Users,Please Login");
     } else {
       axios
-        .post(`http://localhost:3000/save/${authState.email}/${id}`)
+        .post(`http://localhost:3000/save/${authState.email}/${name}`)
         .then((res) => {
           if (res.sucess === false) {
             alert("Error trying to save");
@@ -105,7 +108,7 @@ function PetPage() {
       alert("Functionalitty Avaible just to loged Users,Please Login");
     } else {
       axios
-        .post(`http://localhost:3000/unsave/${authState.email}/${id}`)
+        .post(`http://localhost:3000/unsave/${authState.email}/${name}`)
         .then((res) => {
           if (res.sucess === false) {
             alert("Error trying to Unsave");
@@ -146,7 +149,7 @@ function PetPage() {
       </button>
       <button onClick={handleUnSave} className="unSave-buton">
         UnSave
-      </button>
+      </button> 
     </>
   );
 }

@@ -57,7 +57,7 @@ function SearchPage() {
                     <p className="p-card">{item.status}</p>
                     <button
                       onClick={() => {
-                        navigate(`/pet/${item._id}`);
+                        navigate(`/pet/${item.name}`);
                       }}
                       className="seemore-button"
                     >
@@ -82,7 +82,7 @@ function SearchPage() {
 
                   <button
                     onClick={() => {
-                      navigate(`/pet/${item._id}`);
+                      navigate(`/pet/${item.name}`);
                     }}
                     className="seemore-button"
                   >
@@ -106,7 +106,7 @@ function SearchPage() {
                   <p className="p-card">{item.status}</p>
                   <button
                     onClick={() => {
-                      navigate(`/pet/${item._id}`);
+                      navigate(`/pet/${item.name}`);
                     }}
                     className="seemore-button"
                   >
