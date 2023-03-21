@@ -1,5 +1,10 @@
 
  **** PROJECT IN PROGRESS ***** - NOT DONE YET
+ 
+ 
+ 1) need to fix some funcionalitys bugs
+ 2) need to make a better and responsive css for all page
+ 3) need to clean code and make it simpler in some pages
 
 
 # Getting Started with Create React App
