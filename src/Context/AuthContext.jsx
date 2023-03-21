@@ -21,13 +21,9 @@ function AuthContext({ children }) {
 
   useEffect(() => {
     setTokenValue(localStorage.getItem("apiKey"));
-    setTimeout(() => {
-      console.log('auth',authState)
-      console.log('tkn',tokenValue)
-     
-     
-    }, 2000);
+   
   }, []);
+  
 
  let response 
 
