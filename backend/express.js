@@ -40,11 +40,12 @@ app.post("/unsave/:user/:pet", UserController.UnSave);
 
 app.post("/petadd/pic", upload.single("image"), PetControllers.pictureProvider);
 app.post("/petadd",PetControllers.createPet)
-app.get("/pet/:id", PetControllers.FindPetById);
+// app.get("/pet/:id", PetControllers.FindPetById);
+app.get("/pet/:name" , PetControllers.FindPetByName)
 app.get("/search/:type", PetControllers.FindPetByType);
 app.get("/pet", PetControllers.getAllPets);
 app.get("/fullsearch", PetControllers.FindFullPet);
-app.get("/petuser/:id", PetControllers.getPetsByUserId);
+app.get("/petuser/:id", UserController.GetUserPets, PetControllers.getPetsByUserId);
 
 app.listen(3000, async () => {
   console.log("Server is running on port : 3000");
