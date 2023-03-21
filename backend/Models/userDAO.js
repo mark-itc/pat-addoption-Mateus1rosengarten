@@ -76,7 +76,7 @@ module.exports = class UsersDAO {
     );
   }
 
-  static async GetUserPets(userEmail) {
-    return await userCollection.findOne({ email: userEmail });
-  }
+  // static async GetUserPets(userEmail) {
+  //   return await userCollection.findOne({ email: userEmail });
+  // }
 };

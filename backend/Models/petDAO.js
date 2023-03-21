@@ -33,24 +33,35 @@ module.exports = class PetDAO {
     return findPet;
   }
 
-  static async deletePet(pet) {
-    const deletedPet = await petCollection.deleteOne({ _id: pet._id });
-    return deletedPet;
+  static async getPetByName(name) {
+    const findPet = await petCollection.findOne({ name: name  });
+    return findPet;
   }
 
-  static async getPetByUserId(petID) {
-    const userPet = await petCollection.find({ creator: petID });
-    return userPet;
+  // static async deletePet(pet) {
+  //   const deletedPet = await petCollection.deleteOne({ _id: pet._id });
+  //   return deletedPet;
+  // }
+
+  static async getPetByListOfName(search) {
+    
+      const pets = await petCollection
+       .find({
+        name : {$in : search},
+       }).toArray();
+       console.log('petis',pets)
+      return pets;
+  
   }
 
   static async GetFullPet(queryObj) {
     return await petCollection.find(queryObj).toArray();
   }
 
-  static async updatePet(petId, newData) {
+  static async updatePet(petName, newData) {
     return await petCollection.updateOne(
       {
-        _id: ObjectId(petId),
+       name:petName
       },
       {
         $set: newData,
