@@ -13,10 +13,11 @@ import { useContext } from "react";
 import { authStates } from "./Context/AuthContext";
 import PetContext from "./Context/PetContext";
 import PetPage from "./pages/PetPage";
-import UserPage from "./pages/adminPages/UserPage";
+import UserPage from "./pages/adminPages/UserPage"
+import MyPets from "./pages/MyPets";
 
 function App() {
-  const { authState } = useContext(authStates);
+  const { authState } = useContext(authStates)
 
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
               {authState.status ? (
                 <>
                   <Route path="/profile" element={<ProfileSettings />} />
+                  <Route path="/mypets" element={<MyPets/>} />
                   {/* <Route path='/pets' element = {<MyPets/>} /> */}
                 </>
               ) : (
@@ -43,7 +45,7 @@ function App() {
                 </>
               )}
 
-              <Route path="/pet/:id" element={<PetPage />} />
+              <Route path="/pet/:name" element={<PetPage />} />
               <Route path="/adm/addpet" element={<AddPet />} />
               {authState.email === "mateus.rosengartenn@gmail.com" ? (
                 <Route path="/adm" element={<DashBoard />} />
