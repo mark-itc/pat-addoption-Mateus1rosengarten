@@ -16,11 +16,14 @@ ul {
 }
 
 .adm-link {
-    margin-left: 100px;
+    margin-left: 110px;
     display: inline;
 }
 
-
+.mypets-link {
+    margin-left: 100px ;
+    display: inline;
+}
 .profile-link {
     margin-left: 0px;
     display: inline;

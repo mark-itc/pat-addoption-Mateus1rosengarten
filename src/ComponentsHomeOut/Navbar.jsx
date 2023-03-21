@@ -43,6 +43,9 @@ function Navbar() {
         <li className="search-loged-link">
           <NavLink to={"/search"}>Search</NavLink>
         </li>
+        <li className="mypets-link">
+          <NavLink to={"/mypets"}>My Pets</NavLink>
+        </li>
 
         {authState.email === "mateus.rosengartenn@gmail.com" && (
           <li className="adm-link">
