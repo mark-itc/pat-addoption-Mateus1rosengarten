@@ -114,14 +114,14 @@ function MyPets () {
             className="saved-pets-check"
             id="saved"
           />
-          <h2> 
+          <h2 className="h2-savedpets"> 
           Click here for see/unsee Saved Pets
           </h2>
         </label>
 
   <div className="adopted-list"> 
-  {!adoptedList && <h1 className="fostered-h1">You dont foster any pet</h1>}
-  {adoptedList && !toggle && <h1 className="adopted-h1">My adopted Pets</h1>}
+  {adoptedList.length === 0 && <h1 className="fostered-h1">You dont have any pet</h1>}
+  {adoptedList.length !== 0 && !toggle && <h1 className="adopted-h1">My adopted Pets</h1>}
 {adoptedList && !toggle && adoptedList.map((item) =>{
   return (
   <div className="cardPet">
@@ -146,8 +146,8 @@ function MyPets () {
 
 </div>
 <div className="fostered-list"> 
-{!fosteredList && <h1 className="fostered-h1">You dont foster any pet</h1>}
-{fosteredList && !toggle && <h1 className="fostered-h1">My Fostered Pets</h1>}
+{fosteredList.length === 0 && <h1 className="fostered-h1">You dont foster any pet</h1>}
+{fosteredList.length !== 0 && !toggle && <h1 className="fostered-h1">My Fostered Pets</h1>}
 {fosteredList && !toggle && fosteredList.map((item) =>{
   return (
   <div className="cardPet">

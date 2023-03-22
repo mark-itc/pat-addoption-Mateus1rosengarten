@@ -12,13 +12,68 @@ import { userStates } from "../Context/UserContext";
 function PetPage() {
   const [fullInfoPet, setFullInfoPet] = useState({});
   const [statusInfo, setStatusInfo] = useState("");
-  const { authState, setAuthState } = useContext(authStates);
+  const { authState, setAuthState,value,tokenValue } = useContext(authStates);
+  const [idInfo,setIdInfo] = useState('');
+  const [fullInfoUser,setFullInfoUser] = useState('');
+  const [isAdoptOrFost,setIsAdoptOrFost] = useState(false);
+  const [isSaved,setIsSaved] = useState(false)
   const navigate = useNavigate()
-  // const { id } = useParams();
   const {name} = useParams();
 
-  const parametro = fullInfoPet.name
+
+     
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/auth", {
+          headers: {
+            accessToken: tokenValue,
+          },
+        });
+        if (response.data.error) {
+          console.log("No success", response.data.error);
+          setAuthState((prevState) => ({ ...prevState, status: false }));
+        } else {
+          console.log("success", response.data.id);
+          setIdInfo(response.data.id)
+          
+          
+        }
+      } catch (error) {
+        console.log("fetchData error:", error);
+        setAuthState((prevState) => ({ ...prevState, status: false }));
+      }
+    };
+    fetchData();
+   
+    
+  }, []);
+
+  let myresp
   
+  useEffect(() => {
+    if (idInfo) {
+      
+      axios.get(`http://localhost:3000/user/${idInfo}`).then((res) => {
+        console.log("mypey", res.data);
+        myresp = res.data
+       
+        if (myresp.adopted.includes(name)) {
+          setIsAdoptOrFost(true)
+        }
+      
+        if(myresp.fostered.includes(name)) {
+          setIsAdoptOrFost(true)
+        }
+        if(myresp.saved.includes(name)){
+          setIsSaved(true)
+        }
+       setFullInfoUser(res.data);
+        console.log('test',fullInfoUser)
+      });
+    }
+  }, [idInfo]);
+
 
 
   useEffect(() => {
@@ -46,6 +101,7 @@ function PetPage() {
             alert("Error trying to addopt");
           } else {
             alert("Pet Adopted !!");
+            navigate('/mypets')
             navigate(0)
           }
         });
@@ -63,6 +119,7 @@ function PetPage() {
             alert("Error trying to foster");
           } else {
             alert("Pet Fostered !!");
+            navigate('/mypets')
             navigate(0)
           }
         });
@@ -80,6 +137,7 @@ function PetPage() {
             alert("Error trying to return");
           } else {
             alert("Pet Returned !!");
+            navigate('/mypets')
             navigate(0)
           }
         });
@@ -97,7 +155,8 @@ function PetPage() {
             alert("Error trying to save");
           } else {
             alert("Pet saved !!");
-            navigate()
+            navigate('/mypets')
+            navigate(0)
           }
         });
     }
@@ -114,11 +173,28 @@ function PetPage() {
             alert("Error trying to Unsave");
           } else {
             alert("Pet Unsaved !!");
-            navigate()
+            navigate('/mypets')
+            navigate(0)
           }
         });
     }
   };
+
+  
+  
+  // setTimeout(() => {
+ 
+  //  console.log('10',name)
+  //  console.log('myresp',myresp)
+  //  console.log('myresp2',fullInfoUser.fostered)      
+  // }, 200);
+
+  // setTimeout(() => {
+  //   console.log('myresp2',fullInfoUser.fostered)    
+  //   itsMine = fullInfoUser.fostered.includes({name}) || fullInfoUser.adopted.includes({name}) ? true : false;
+  //   console.log('fim',itsMine)
+  //   },500)
+
 
   return (
     <>
@@ -134,22 +210,22 @@ function PetPage() {
         breed={fullInfoPet.breed}
         dietary={fullInfoPet.dieatary}
       />
-        
-      <button disabled={fullInfoPet.status === 'Adopted'} onClick={handleAdopt} className="addopt-button">
+        { fullInfoUser && 
+      <button disabled={fullInfoPet.status === 'Adopted'|| fullInfoPet.status === 'Fostered'} onClick={handleAdopt} className="addopt-button">
         Addopt
-      </button>
-      <button disabled={fullInfoPet.status === 'Fostered' || fullInfoPet.status === 'Adopted'}  onClick={handleFoster} className="foster-button">
+      </button> }
+      {fullInfoUser && <button disabled={fullInfoPet.status === 'Fostered' || fullInfoPet.status === 'Adopted'}  onClick={handleFoster} className="foster-button">
         Foster
-      </button>
-      <button disabled={fullInfoPet.status === 'Avaible'} onClick={handleReturn} className="return-button">
+      </button> }
+      {fullInfoUser &&   <button disabled={fullInfoPet.status === 'Avaible' || !isAdoptOrFost } onClick={handleReturn} className="return-button">
         Return
-      </button>
-      <button onClick={handleSave} className="save-buton">
+      </button> }
+      {fullInfoUser && <button disabled={isSaved} onClick={handleSave} className="save-buton">
         Save
-      </button>
-      <button onClick={handleUnSave} className="unSave-buton">
+      </button> }
+     {fullInfoUser &&  <button disabled={!isSaved} onClick={handleUnSave} className="unSave-buton">
         UnSave
-      </button> 
+      </button> }
     </>
   );
 }
