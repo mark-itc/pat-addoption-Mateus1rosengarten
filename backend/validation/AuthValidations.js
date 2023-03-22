@@ -9,6 +9,9 @@ const authSchema = {
     email: { type: "string" },
     password: { type: "string" },
     number: { type: "string" },
+    saved : { type: "array"},
+    fostered : { type: "array"},
+    adopted : { type: "array"}
   },
   required: ["name", "lastName", "email", "password", "number"],
   additionalProperties: false,
