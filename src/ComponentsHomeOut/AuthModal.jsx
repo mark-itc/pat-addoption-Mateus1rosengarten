@@ -16,6 +16,9 @@ function AuthModal({ toggleModal }) {
 
     try {
       console.log(value);
+      value.adopted = []
+      value.fostered = []
+      value.saved = []
       const data = await fetch("http://localhost:3000/signup", {
         method: "POST",
         body: JSON.stringify({ ...value }),
