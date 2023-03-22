@@ -294,20 +294,17 @@ background-color:#F5EEDC!important;
 .saved-pets{
   position: absolute;
   top: 12vh;
-  right: 12vw;
-  font-size: 30px;
   width: 20px;
-  height: 20px;
   white-space: nowrap;
   
   
 }
 .saved-pets-check{
+
+  display: none;
+}
+
+.h2-savedpets{
   position: absolute;
-  top: 5vh;
-  right: 0;
-  white-space: nowrap;
-  
-  
-  
+  left: 30vw;
 }
