@@ -37,11 +37,7 @@ module.exports = class PetDAO {
     const findPet = await petCollection.findOne({ name: name  });
     return findPet;
   }
-
-  // static async deletePet(pet) {
-  //   const deletedPet = await petCollection.deleteOne({ _id: pet._id });
-  //   return deletedPet;
-  // }
+ß
 
   static async getPetByListOfName(search) {
     
@@ -59,13 +55,9 @@ module.exports = class PetDAO {
   }
 
   static async updatePet(petName, newData) {
-    return await petCollection.updateOne(
-      {
-       name:petName
-      },
-      {
-        $set: newData,
-      }
-    );
+    return await petCollection.updateOne({name:petName},{$set: newData});
   }
+
+
 };
+

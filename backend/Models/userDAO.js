@@ -26,7 +26,7 @@ module.exports = class UsersDAO {
   }
 
   static async updateUser(userEmail, userData) {
-    await userCollection.updateOne({ email: userEmail }, { $set: userData });
+   return await userCollection.updateOne({ email: userEmail }, { $set: userData });
   }
 
   static async getUserById(userId) {
@@ -76,7 +76,4 @@ module.exports = class UsersDAO {
     );
   }
 
-  // static async GetUserPets(userEmail) {
-  //   return await userCollection.findOne({ email: userEmail });
-  // }
 };
