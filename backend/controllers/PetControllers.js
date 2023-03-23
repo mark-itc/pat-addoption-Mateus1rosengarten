@@ -47,17 +47,7 @@ module.exports = class PetControllers {
     }
   }
 
-  // static async FindPetById(req, res) {
-  //   const { id } = req.params;
-  //   try {
-  //     const pet = await PetDAO.getPetById(id);
-
-  //     res.status(200).json({ pet: pet });
-  //   } catch {
-  //     res.status(404).json({ message: "something got wrong" });
-  //   }
-  // }
-
+ 
   static async FindPetByName(req, res) {
     const { name } = req.params;
     try {
@@ -118,15 +108,6 @@ module.exports = class PetControllers {
     }
   }
 
-  static async deletePet(req, res) {
-    const { id } = req.params;
-    try {
-      const deleted = await PetDAO.deletePet(id);
-      res.status(200).json(deleted);
-    } catch {
-      res.status(404).json({ message: "something got wrong" });
-    }
-  }
 
   static async getPetsByUserId(req, res) {
     try {
@@ -144,6 +125,32 @@ module.exports = class PetControllers {
           adopted,
         });
     } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async updatePet(req,res) {
+    try {
+      const petName = req.params.name;
+      const newData = req.body;
+
+      const validRequest = await ModelImg(req.body.file)
+      if (!validRequest) {
+        return res.status(400).json({
+          sucess: false,
+          message: "Something bad happened",
+        });
+      }
+    const pet = await PetDAO.updatePet(petName,newData)
+
+    return res.status(200).json({
+      petupdated: pet,
+      success: true,
+      message: "Pet updated",
+    });
+
+    }
+    catch(error){
       console.log(error);
     }
   }
