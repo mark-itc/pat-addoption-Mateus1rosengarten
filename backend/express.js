@@ -39,8 +39,8 @@ app.post("/unsave/:user/:pet", UserController.UnSave);
 // PET ROUTES
 
 app.post("/petadd/pic", upload.single("image"), PetControllers.pictureProvider);
-app.post("/petadd",PetControllers.createPet)
-// app.get("/pet/:id", PetControllers.FindPetById);
+app.post("/petadd",PetControllers.createPet);
+app.post("/petedit/:name",PetControllers.updatePet);
 app.get("/pet/:name" , PetControllers.FindPetByName)
 app.get("/search/:type", PetControllers.FindPetByType);
 app.get("/pet", PetControllers.getAllPets);
