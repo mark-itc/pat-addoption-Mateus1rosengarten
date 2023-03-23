@@ -18,6 +18,18 @@
     font-weight: 600!important;
     width: 100px;
 }
+.modal-button-updatepet{
+    position: absolute;
+    bottom: 7vh;
+    left:45vw;
+    border-radius: 5px!important;
+    background-color: #f2f2f2!important;
+    padding: 11px 13px!important;
+    color: #1DA1F2;
+    font-weight: 600!important;
+    width: 16vw;
+
+}
 
 .foster-button {
     position: absolute;
@@ -65,4 +77,18 @@
     color: #1DA1F2;
     font-weight: 600!important;
     width: 100px;
+}
+
+.button-backpage{
+
+    position: absolute;
+    bottom: 81vh;
+    left: 38vw;
+    border-radius: 5px!important;
+    background-color: #f2f2f2!important;
+    padding: 11px 13px!important;
+    color: #1DA1F2;
+    font-weight: 600!important;
+    width: 13vw;
+
 }
