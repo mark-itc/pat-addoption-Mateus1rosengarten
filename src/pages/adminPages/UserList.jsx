@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { userStates } from "../../Context/UserContext";
-const { useContext } = require("react");
-const { useState } = require("react");
+import { useContext } from "react";
+import "./Adm.css";
 
 function UserList() {
   const { user, setUser } = useContext(userStates);
@@ -15,7 +15,7 @@ function UserList() {
 
   return (
     <>
-      <h1>All users:</h1>
+      <h1 className="h1-user-list">All Users:</h1>
       {userList &&
         user.map((item) => {
           return (

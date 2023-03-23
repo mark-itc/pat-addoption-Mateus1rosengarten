@@ -15,18 +15,20 @@
 
 .result-pet-list{
     position: absolute;
-    width: 60vw;
-    height: 100vh;
-    top:800px;
-    left: 280px;
-    display: flex;
-  }
+    top:97vh;
+    left: 3vw;
+    
+    }
+
+.result-pet-list ,div{
+  margin-bottom: 5px;
+}    
 
 .addpet-button{
    
     position: absolute;
-    top: 650px;
-    left: 30px;
+    top: 78vh;
+    left: 43vw;
    height: 45px;
    width: 180px;
      border-radius: 5px!important;
@@ -36,4 +38,17 @@
      font-weight: 600!important;
      margin: 5px;
 }
-  
+
+.h1-user-list{
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: Verdana, sans-serif;
+}
+
+.h1-pet-list {
+  position: absolute;
+  margin-bottom: 20px;
+  font-family: Verdana,sans-serif;
+  top: 88vh;
+  left: 3vw;
+}

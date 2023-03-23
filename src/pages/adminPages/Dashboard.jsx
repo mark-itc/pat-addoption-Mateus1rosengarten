@@ -29,31 +29,18 @@ function DashBoard() {
       >
         ADD NEW PET
       </button>
-
+       <h1 className="h1-pet-list">All Pets:</h1>
       <div className="result-pet-list">
         {searchList &&
           petInfo.map((item) => {
             return (
-              <>
-                <div className="cardPet">
-                  <img src="" alt="" />
-                  <div className="containerPet">
-                    <h4 className="h4-card">
-                      {item.name.toUpperCase()}
-                    </h4>
-                    <p>{item.status}</p>
-
-                    <button
-                      onClick={() => {
-                        navigate(`/pet/${item._id}`);
-                      }}
-                      className="seemore-button"
-                    >
-                      See More
-                    </button>
-                  </div>
-                </div>
-              </>
+              <div
+                onClick={() => {
+                  navigate(`/pet/${item.name}`);
+                }}
+              >
+               {item.name.toUpperCase()}
+              </div>
             );
           })}
       </div>
