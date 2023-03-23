@@ -17,11 +17,38 @@ function PetPage() {
   const [fullInfoUser,setFullInfoUser] = useState('');
   const [isAdoptOrFost,setIsAdoptOrFost] = useState(false);
   const [isSaved,setIsSaved] = useState(false)
+  const [modalEdit,setModalEdit] = useState(false)
   const navigate = useNavigate()
   const {name} = useParams();
 
+  const [petInfo, setPetInfo] = useState({
+    type: fullInfoPet.type,
+    // name: fullInfoPet.name,
+    heigth: fullInfoPet.hei,
+    weight: fullInfoPet.wei,
+    color: fullInfoPet.color,
+    bio: fullInfoPet.bio,
+    dietary: fullInfoPet.dieatary,
+    breed: fullInfoPet.breed,
+    image: fullInfoPet.image
+    
+  });
+  const [petPhoto,setPetPhoto] = useState('');
 
-     
+  const type = petInfo.type;
+  // const nam = petInfo.name;
+  const heigth = petInfo.heigth;
+  const weight = petInfo.weight;
+  const color = petInfo.color;
+  const bio = petInfo.bio;
+  const dieatary = petInfo.dietary;
+  const breed = petInfo.breed;
+  const image = petInfo.image
+
+
+
+// FUNCTIONS TO GET USER AND PET INFOS
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,6 +115,10 @@ function PetPage() {
       });
     }
   }, []);
+
+
+
+// BUTTONS FUNCTIONS  
 
   const handleAdopt = () => {
     if (!authState.email) {
@@ -180,25 +211,68 @@ function PetPage() {
     }
   };
 
-  
-  
-  // setTimeout(() => {
- 
-  //  console.log('10',name)
-  //  console.log('myresp',myresp)
-  //  console.log('myresp2',fullInfoUser.fostered)      
-  // }, 200);
+ // EDIT PET FUNCTIONS 
 
-  // setTimeout(() => {
-  //   console.log('myresp2',fullInfoUser.fostered)    
-  //   itsMine = fullInfoUser.fostered.includes({name}) || fullInfoUser.adopted.includes({name}) ? true : false;
-  //   console.log('fim',itsMine)
-  //   },500)
+  const updatePet = (event) => {
+    event.preventDefault();
+    console.log(petInfo);
+    axios
+      .post(`http://localhost:3000/petedit/${name}`, {
+        type,
+        // nam,
+        heigth,
+        weight,
+        color,
+        bio,
+        dieatary,
+        breed,
+        image
+        
+        
+      })
+      .then((res) => {
+        console.log(res);
+        alert('Pet Edited !! =)')
+        navigate("/adm");
+        setModalEdit(false)
+      });
+  };
+
+  const addPic = async () => {
+    const formData = new FormData();
+    formData.append("image", petPhoto);
+
+    const response = await fetch("http://localhost:3000/petadd/pic", {
+      method: "POST",
+      body: formData,
+    });
+    
+    const data = await response.json();
+    setPetInfo((prevState) => ({
+      ...prevState,
+      image: data.url,
+    }));
+
+  };
+
+
+  useEffect(() => {
+    addPic();
+
+  },[petPhoto])
+
+  const handlePictureUpload = async (e) => {
+    setPetPhoto(e.target.files[0])
+  }
+
+  
+  
 
 
   return (
     <>
-      <PetCard
+    
+      {!modalEdit && <PetCard
       imag={fullInfoPet.image}
         name={fullInfoPet.name}
         status={statusInfo}
@@ -209,25 +283,134 @@ function PetPage() {
         bio={fullInfoPet.bio}
         breed={fullInfoPet.breed}
         dietary={fullInfoPet.dieatary}
-      />
-        { fullInfoUser && 
+      /> }
+        { !modalEdit && fullInfoUser && 
       <button disabled={fullInfoPet.status === 'Adopted'|| fullInfoPet.status === 'Fostered'} onClick={handleAdopt} className="addopt-button">
         Addopt
       </button> }
-      {fullInfoUser && <button disabled={fullInfoPet.status === 'Fostered' || fullInfoPet.status === 'Adopted'}  onClick={handleFoster} className="foster-button">
+      { !modalEdit && fullInfoUser && <button disabled={fullInfoPet.status === 'Fostered' || fullInfoPet.status === 'Adopted'}  onClick={handleFoster} className="foster-button">
         Foster
       </button> }
-      {fullInfoUser &&   <button disabled={fullInfoPet.status === 'Avaible' || !isAdoptOrFost } onClick={handleReturn} className="return-button">
+      { !modalEdit && fullInfoUser &&   <button disabled={fullInfoPet.status === 'Avaible' || !isAdoptOrFost } onClick={handleReturn} className="return-button">
         Return
       </button> }
-      {fullInfoUser && <button disabled={isSaved} onClick={handleSave} className="save-buton">
+      {!modalEdit && fullInfoUser && <button disabled={isSaved} onClick={handleSave} className="save-buton">
         Save
       </button> }
-     {fullInfoUser &&  <button disabled={!isSaved} onClick={handleUnSave} className="unSave-buton">
+     {!modalEdit && fullInfoUser &&  <button disabled={!isSaved} onClick={handleUnSave} className="unSave-buton">
         UnSave
       </button> }
+
+     {!modalEdit && fullInfoUser.email === 'mateus.rosengartenn@gmail.com' && <button className="modal-button-updatepet" onClick={() => {setModalEdit(true)}}>Update Pet</button>}
+
+    
+     {modalEdit && <div className="box-add">
+        <h2 className="h2-form">Edit {name}</h2>
+        <form encType="multipart/form-data"> 
+        <label className="label-form" htmlFor="typeOf">
+          Type
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, type: e.target.value })}
+          type="text"
+          id="typeOf"
+          placeholder={fullInfoPet.type}
+        />
+        {/* <label className="label-form" htmlFor="nameOf">
+          Name
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, name: e.target.value })}
+          type="text"
+          id="nameOf"
+          placeholder={fullInfoPet.name}
+        /> */}
+
+        <label className="label-form" htmlFor="heigthOf">
+          Heigth
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, heigth: e.target.value })}
+          type="text"
+          id="heigthOf"
+          placeholder={fullInfoPet.heigth}
+        />
+        <label className="label-form" htmlFor="weightOf">
+          Weight
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, weight: e.target.value })}
+          type="text"
+          id="weightOf"
+          placeholder={fullInfoPet.weight}
+        />
+        <label className="label-form" htmlFor="colorOf">
+          Color
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, color: e.target.value })}
+          type="text"
+          id="colorOf"
+          placeholder={fullInfoPet.color}
+        />
+        <label className="label-form" htmlFor="bioOf">
+          Bio
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, bio: e.target.value })}
+          type="text"
+          id="bioOf"
+          placeholder={fullInfoPet.bio}
+        />
+        <label className="label-form" htmlFor="dietOf">
+          Dietary
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, dietary: e.target.value })}
+          type="text"
+          id="dietOf"
+          placeholder={fullInfoPet.dieatary}
+        />
+        <label className="label-form" htmlFor="breedOf">
+          Breed
+        </label>
+        <input
+          className="input-form"
+          onChange={(e) => setPetInfo({ ...petInfo, breed: e.target.value })}
+          type="text"
+          id="breedOf"
+          placeholder={fullInfoPet.breed}
+        />
+        <label className="label-form" htmlFor="imageOf">
+          Image
+        </label>
+        <input
+         type="file"
+          name="image"
+          className="input-form"
+          onChange={handlePictureUpload}
+      
+          id="imageOf"
+        />
+
+        <button type="submit" className="add-btn" onClick={updatePet}>
+          EDIT PET
+        </button>
+        <button className="button-backpage" onClick={()=>{setModalEdit(false)}}>BACK TO PET</button>
+        </form>
+      </div> }
+      
+
     </>
   );
 }
+
 
 export default PetPage;

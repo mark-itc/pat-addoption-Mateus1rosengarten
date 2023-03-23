@@ -169,16 +169,16 @@ function ProfileSettings() {
         />
 
         <label className="label-prof" htmlFor="bio">
-          Bio
+          Short Bio
         </label>
-        <textarea
+        <input
           onChange={(e) => setUpdate({ ...update, bio: e.target.value })}
           className="input-prof"
           id="bio"
           placeholder={value.data.bio}
         >
-          {" "}
-        </textarea>
+          
+        </input>
       </div>
 }
       <hr className="hr-form-end"></hr>
