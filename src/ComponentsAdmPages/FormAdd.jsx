@@ -49,7 +49,10 @@ function Form() {
       })
       .then((res) => {
         console.log(res);
-        navigate("/adm/addpet");
+        alert('Pet Added Sucesfully!')
+        navigate("/search");
+      
+        
       });
   };
 
